@@ -1,0 +1,397 @@
+﻿
+@{
+    ViewData["Title"] = "Wedding";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+
+
+
+<style>
+    /* Fix carousel height to 600px */
+    .carousel-inner img {
+        height: auto;
+        object-fit: cover;
+    }
+
+    .video-section {
+        text-align: center;
+    }
+
+        .video-section h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .video-section p {
+            font-size: 16px;
+            color: #666;
+        }
+
+    .main-video {
+        position: relative;
+    }
+
+        .main-video video {
+            width: 100%;
+            height: auto;
+            max-height: 700px;
+            border-radius: 10px;
+        }
+
+    .slider-section {
+        margin: 20px auto;
+    }
+
+        .slider-section video {
+            border-radius: 10px;
+            width: 100%;
+            height: auto;
+        }
+
+        .slider-section .slick-slide {
+            padding: 5px;
+        }
+
+    /* ===================== */
+
+    .image-section img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .text-section ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        padding-left: 50px;
+    }
+
+    .text-section h3 {
+        color: #333;
+        margin-bottom: 15px;
+        padding-left: 40px;
+    }
+
+    .text-section p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        padding-left: 40px;
+    }
+    /* ========================= */
+    .main-section {
+        padding: 50px 20px;
+        background-color: #fff5e9;
+    }
+
+    .left-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+        .left-image img {
+            height: auto;
+            border: 5px solid #f3e0d2;
+            border-radius: 10px;
+        }
+
+    .col-sm-6 img {
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .text-section h4 {
+        font-size: 20px;
+        color: #7a5e54;
+    }
+
+    .highlight {
+        font-size: 48px;
+        color: #e77b56;
+        font-weight: bold;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        margin-top: 10px;
+        color: #5a4036;
+    }
+
+    .services-list {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #5a4036;
+    }
+
+        .services-list li {
+            margin-bottom: 10px;
+        }
+
+    .animate-image {
+        animation: slideInLeft 1.5s ease-in-out;
+    }
+
+    @@keyframes slideInLeft {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* ================= */
+    #card {
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        max-width: 1000px;
+        height: 500px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        background: white;
+    }
+
+    #cardImage {
+        width: 50%;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1.5s ease-in-out;
+    }
+
+    #cardContent {
+        width: 50%;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+        background: #ffffff;
+        opacity: 1;
+        transition: opacity 0.8s ease-in-out;
+    }
+
+        #cardContent.hidden {
+            opacity: 0;
+        }
+
+    #cardTitle {
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    #cardDescription {
+        margin: 0;
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        #card {
+            flex-direction: column;
+            height: auto;
+        }
+
+        #cardImage,
+        #cardContent {
+            width: 100%;
+            height: 300px;
+        }
+
+        #cardContent {
+            padding: 15px;
+            text-align: center;
+        }
+    }
+    /* ================================= */
+
+
+    .content-section {
+        margin-top: 25px;
+        padding: 50px 0;
+        margin-left: 30px;
+    }
+
+        .content-section h2 {
+            margin-top: 30px;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .content-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+        }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    #Enquery {
+        margin-left: 20px;
+    }
+
+    #Book {
+        margin-left: 20px;
+    }
+
+    /* ===================== */
+
+
+    .btn {
+        margin: 5px;
+    }
+
+    .gallery-container {
+        max-width: 1200px; /* Adjust container width */
+        margin: 0 auto; /* Center align container */
+    }
+
+    .gallery .col-sm-4 {
+        padding: 10px; /* Add spacing between columns */
+    }
+
+    .gallery img {
+        width: 100%; /* Image fills the column */
+        height: 300px; /* Fix image height for uniformity */
+        object-fit: cover; /* Ensure image maintains aspect ratio */
+        /* transform: scale(0.8) rotate(-30deg);  */
+        opacity: 0; /* Initially hidden */
+        /* transition: transform 0.5s ease, opacity 0.5s ease;  */
+    }
+
+        .gallery img.loaded {
+            /* transform: scale(1) rotate(0deg); */
+            opacity: 1; /* Fully visible */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+</style>
+
+<!-- Second Section  -->
+<div class="container my-5 mt-5">
+    <div class="row align-items-center">
+        <!-- Left Side Image -->
+        <div class="col-sm-6 image-section">
+            <img src="~/gallery/wedding2.png" alt="Wedding Photography">
+        </div>
+        <!-- Right Side Text -->
+        <div class="col-sm-6 text-section">
+            <h3>Adarsh Studio Wedding Photography</h3>
+            <p>
+                Adarsh Studio specializes in capturing the essence of your wedding day with closeup shots
+                that highlight emotions, elegance, and detailed artistry. Our team ensures every moment is
+                preserved in its true beauty.
+            </p>
+            <ul>
+                <li>Closeup shots of bride and groom showcasing elegance.</li>
+                <li>Highlighting intricate details like attire, makeup, and jewelry.</li>
+                <li>Perfect combination of natural and studio lighting.</li>
+                <li>Experienced photographers delivering professional results.</li>
+                <li>Customized styles tailored to client preferences.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--=================== Bride Photo Shoot==================== -->
+
+<div class="container main-section mt-5 pt-5">
+    <div class="row align-items-center">
+        <!-- Left Image -->
+        <div class="col-lg-6 col-md-12 position-relative left-image animate-image">
+            <img src="~/gallery/bride4.jpg" alt="Bride Photo Shoot" class="img-fluid">
+        </div>
+        <!-- Right Content -->
+        <div class="col-lg-6 col-md-12 text-section">
+            <h4>Exclusive Bride Photo Shoot</h4>
+            <h1 class="highlight">Adarsh Studio</h1>
+            <p class="subtitle">Transforming Your Wedding Dreams into Stunning Visuals</p>
+            <ul class="services-list">
+                <li>Elegant bridal portraits with professional lighting.</li>
+                <li>Custom poses to enhance your natural beauty.</li>
+                <li>On-location shoots with mesmerizing backgrounds.</li>
+                <li>High-resolution images that capture every detail.</li>
+                <li>Exclusive albums tailored to your preferences.</li>
+            </ul>
+            <div class="row g-3 mt-4">
+                <div class="col-sm-6 animate-image">
+                    <img src="~/gallery/bride6.jpg" alt="Bride Photo 1" class="img-fluid shadow-sm">
+                </div>
+                <div class="col-sm-6 animate-image">
+                    <img src="~/gallery/indeximg3.jpg" alt="Bride Photo 2" class="img-fluid shadow-sm">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===========================Video   =================== -->
+<div class="container text-center video-section mt-5">
+    <h2>Wedding Films</h2>
+    <p class="mb-5">
+        Adarsh Studio has carved a unique place in the Indian wedding film movement, transforming every wedding into a remarkable story. Our team, known for their expertise, captures each ceremony with the utmost precision and creativity. With a blend of art and innovation, Adarsh Studio has redefined wedding films by adding a cinematic touch to every moment.
+    </p>
+</div>
+
+<!-- ================= -->
+
+<div class="container content-section">
+    <div class="row justify-content-center">
+        <!-- Image Section -->
+        <div class="col-sm-1"></div>
+        <div class="col-md-4 image-container">
+            <img src="~/gallery/wedcouple.jpeg" alt="Wedding Photography" class="img-fluid">
+        </div>
+        <!-- Text Section -->
+        <div class="col-md-6">
+            <h2>Adarsh Studio Wedding Photography</h2>
+            <p>
+                Adarsh Studio is your one-stop destination for capturing the timeless beauty of your wedding day.
+                Our professional photographers specialize in close-up wedding poses, ensuring every moment is immortalized with elegance and perfection.
+            </p>
+            <p>Why choose Adarsh Studio?</p>
+            <ul>
+                <li>Expertise in candid and traditional wedding photography.</li>
+                <li>Advanced equipment for high-quality images and videos.</li>
+                <li>Personalized services tailored to your wedding style.</li>
+                <li>Experienced team dedicated to capturing every detail beautifully.</li>
+                <li>Affordable packages without compromising on quality.</li>
+            </ul>
+            <p>
+                At Adarsh Studio, we believe that every wedding is a unique story waiting to be told through the lens. Our expert photographers specialize in 
+                capturing the essence of your special day, preserving each emotion, smile, and timeless moment. With years of experience and a keen eye for detail, 
+                we ensure that your wedding memories are not only seen but felt for a lifetime.
+            </p>
+            @Html.ActionLink("View Gallery","Gallery","Adarsh",null,new{@class="book-btn"})
+        </div>
+    </div>
+</div>
+

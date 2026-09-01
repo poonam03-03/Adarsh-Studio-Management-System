@@ -1,0 +1,55 @@
+﻿@model Adarsh_Studio.Models.CityMaster
+
+@{
+    ViewData["Title"] = "AddCity";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .notification-section {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #80bdff;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .notification-title {
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Add New City</h1>
+    
+    <p>@ViewBag.notify</p>
+
+    <!-- Notification Form -->
+    <div class="notification-section mb-4">
+        <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold">Add New City</h2>
+        <p class="text-success">@ViewBag.addcity</p>
+        <form action="AddCity" method="post">
+
+            <div class="mb-3">
+                <label for="notificationMessage" class="form-label">City Name</label>
+                <textarea class="form-control" id="notificationMessage" rows="3" placeholder="Enter message here" name="CityName" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Add City</button>
+        </form>
+    </div>
+</div>

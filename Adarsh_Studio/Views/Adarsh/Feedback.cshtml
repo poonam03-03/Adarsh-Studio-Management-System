@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewData["Title"] = "Feedback";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+@inject IConfiguration config
+@{
+    var MySiteKey = config.GetSection("Captcha").GetSection("SiteKey").Value;
+    // var siteKey = config["Captcha:SiteKey"];
+}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+        $(document).ready(function () {
+    $(".imgstar").css("cursor", "pointer");
+    $(".imgstar").css("border-radius", "50%");
+    var StarColors = ["red", "orange", "yellow", "lightgreen", "green"];
+    var Message = ["Disappointed", "Unsatisfied", "Likely Satisfied", "Satisfied", "Strongly Satisfied"];
+
+    $(".imgstar").click(function () {
+        $(".imgstar").css("background-color", "white");
+        var sno = $(this).attr("data-sno");
+        $("#StarRating").val(sno);
+        $("#spres").text(Message[sno - 1]);
+        for (x = 0; x < sno; x++) {
+            $(".imgstar").eq(x).css("background-color", StarColors[sno - 1]);
+        }
+    });
+
+    $("form").submit(function (e) {
+        var isValid = true;
+        $(".validation-message").remove(); // Clear previous validation messages
+
+        // Validate Name
+        if ($("#Name").val().trim() === "") {
+            isValid = false;
+            $("#Name").after('<span class="validation-message" style="color:red;">Enter Your Name.</span>');
+        }
+
+             // Validate Title
+            if ($("#EmailId").val().trim() === "") {
+                isValid = false;
+                $("#EmailId").after('<span class="validation-message" style="color:red;">Enter Your Email Id.</span>');
+            }
+
+       
+
+        // Validate Mobile No.
+        var mobileNo = $("#MobileNo").val().trim();
+        if (mobileNo === "") {
+            isValid = false;
+            $("#MobileNo").after('<span class="validation-message" style="color:red;">Enter Your Mobile Number.</span>');
+        } else if (mobileNo.length < 10) {
+            isValid = false;
+            $("#MobileNo").after('<span class="validation-message" style="color:red;">Mobile number should be at least 10 digits.</span>');
+        }
+
+        // Validate Title
+        if ($("#TitleOfFeedback").val().trim() === "") {
+            isValid = false;
+            $("#TitleOfFeedback").after('<span class="validation-message" style="color:red;">Enter Feedback Title.</span>');
+        }
+
+        // Validate Feedback
+        if ($("#FeedbackMsg").val().trim() === "") {
+            isValid = false;
+            $("#FeedbackMsg").after('<span class="validation-message" style="color:red;">Enter Your Feedback Message.</span>');
+        }
+
+        // Validate Star Rating
+        if ($("#StarRating").val() === "") {
+            isValid = false;
+            $("#StarRating").after('<span class="validation-message" style="color:red;">Please rate your experience with stars.</span>');
+        }
+
+        // Validate reCAPTCHA
+        var recaptchaResponse = grecaptcha.getResponse();
+        if (recaptchaResponse.length === 0) {
+            isValid = false;
+            alert('Please verify that you are not a robot.');
+        }
+
+        // If not valid, prevent form submission
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+});
+
+    </script>
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    .form-control:focus {
+        border-color: #5cb85c;
+        box-shadow: 0 0 0 0.2rem rgba(92, 184, 92, 0.25);
+    }
+    .feedback-form {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        border: 3px solid black;
+        border-radius: 8px;
+    }
+    .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: #a33838;
+    }
+    .btn-custom {
+        background-color: black;
+        color: white;
+        width: 100%;
+    }
+    .btn-custom:hover {
+        background-color: #a33838;
+    }
+
+    .square-input {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        margin-bottom: 2%;
+        border: 2px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .square-input:focus {
+        border-color: #a33838;
+        outline: none;
+    }
+
+    .validation-message {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5 d-sm-none d-md-block">
+        <img src="~/gallery/feedbackimg.png" class="img-fluid" />
+    </div>
+
+    <div class="col-sm-5">
+        <div class="feedback-form">
+            <div class="form-header">
+                <h2>Feedback Form</h2>
+            </div>
+
+            @using (Html.BeginForm("Feedback", "Adarsh", FormMethod.Post))
+            {
+                <!-- Name input -->
+                <div class="mb-3">
+                    <i class="fas fa-user"></i>
+                    <label for="name" class="form-label">Your Name</label>
+                    @Html.TextBox("Name", null, new { @class = "square-input", placeholder = "Enter Your Name", id = "Name" })
+                </div>
+
+                <!-- Email input -->
+                <div class="mb-3">
+                    <i class="fa-solid fa-envelope"></i>
+                    <label for="email" class="form-label">Email Address</label>
+                    @Html.TextBox("EmailId", null, new { @class = "square-input", placeholder = "Enter Your Email", id = "EmailId" })
+                </div>
+
+                <div class="mb-3">
+                    <i class="fa-solid fa-phone"></i>
+                    <label for="mobile" class="form-label">Mobile Number</label>
+                    @Html.TextBox("MobileNo", null, new { @class = "square-input", placeholder = "Enter Your Mobile Number", id = "MobileNo" })
+                </div>
+
+                <div class="mb-3">
+                    <i class="fa-solid fa-pen"></i>
+                    <label for="title" class="form-label">Title</label>
+                    @Html.TextBox("TitleOfFeedback", null, new { @class = "square-input", placeholder = "Enter Feedback Title", id="TitleOfFeedback" })
+                </div>
+
+                <!-- Feedback textarea -->
+                <div class="mb-3">
+                    <i class="fa-solid fa-comments"></i><label for="feedback" class="form-label">Your Feedback</label>
+                    @Html.TextArea("FeedbackMsg", null, new { @class = "square-input", placeholder = "Share Your thoughts here...", rows = "4", id = "FeedbackMsg" })
+                </div>
+
+                <!-- Rating input -->
+                <div class="mb-3">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <label for="rating" class="form-label">Rate your experience</label>
+                    <span class="form-control">Star Rating:
+                        <img src="~/gallery/star_icon.png" class="imgstar" width="30px" height="30px" data-sno="1" />
+                        <img src="~/gallery/star_icon.png" class="imgstar" width="30px" height="30px" data-sno="2" />
+                        <img src="~/gallery/star_icon.png" class="imgstar" width="30px" height="30px" data-sno="3" />
+                        <img src="~/gallery/star_icon.png" class="imgstar" width="30px" height="30px" data-sno="4" />
+                        <img src="~/gallery/star_icon.png" class="imgstar" width="30px" height="30px" data-sno="5" style="margin-right: 50px;" />
+                        <span id="spres" class="h5"></span>
+                    <input type="hidden" id="StarRating" name="StarRating" />
+                    </span>
+                </div>
+
+                <div class="g-recaptcha" style="width:fit-content; border-radius:20px;" data-sitekey="@MySiteKey"></div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-custom">Submit Feedback</button>
+            }
+
+            <p>@ViewBag.Message</p>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>

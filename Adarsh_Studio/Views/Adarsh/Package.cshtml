@@ -1,0 +1,513 @@
+﻿
+@{
+    ViewData["Title"] = "Package";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+@using Adarsh_Studio.Models
+@model List<PackageMaster>
+
+
+
+
+
+
+
+
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #000; /* Black text */
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    /* Background Design */
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        /* background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 25%, rgba(255, 255, 255, 0.2) 25%); */
+        background-size: 50px 50px; /* Diagonal line effect */
+    }
+
+        .background .shape {
+            position: absolute;
+            border-radius: 10%;
+            opacity: 0.1;
+            background: #000; /* Black transparent */
+            animation: floatRotate 15s ease-in-out infinite;
+        }
+
+            /* Shape 1 */
+            .background .shape.one {
+                width: 200px;
+                height: 200px;
+                top: 20%;
+                left: 10%;
+            }
+            /* Shape 1 */
+            .background .shape.one1 {
+                width: 200px;
+                height: 200px;
+                top: 50%;
+                left: 25%;
+            }
+
+            /* Shape 2 */
+            .background .shape.two {
+                width: 300px;
+                height: 300px;
+                bottom: 10%;
+                right: 15%;
+            }
+
+            /* Shape 3 */
+            .background .shape.three {
+                width: 250px;
+                height: 250px;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+    /* Rotating & Floating Animation */
+    @@keyframes floatRotate {
+        0% {
+            transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-20px) rotate(45deg);
+        }
+
+        100% {
+            transform: translateY(0) rotate(90deg);
+        }
+    }
+
+
+
+    /* Page Header Section */
+    #page-header {
+        background-color: #6c757d;
+        opacity: 0.6;
+        color: white;
+        text-align: center;
+        padding: 100px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        #page-header h1 {
+            color: white;
+            margin: 0;
+            font-size: 32px;
+            opacity: 0; /* Start hidden */
+            transform: translateY(30px); /* Start position below */
+            animation: textSlideUp 1.5s ease-out forwards; /* Animate text */
+        }
+
+        #page-header p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            opacity: 0; /* Start hidden */
+            transform: translateY(30px); /* Start position below */
+            animation: textSlideUp 1.5s ease-out 0.5s forwards; /* Delay animation */
+        }
+
+    @@keyframes textSlideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ================= */
+    #package-container {
+        margin-top: 20px;
+    }
+
+    .card-package {
+        padding: 20px;
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 -4px 10px rgba(0, 0, 0, 0.1), -4px 0 10px rgba(0, 0, 0, 0.1), 4px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .card-package h4 {
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card-package p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-package ul {
+            padding-left: 20px;
+        }
+
+            .card-package ul li {
+                margin-bottom: 10px;
+                font-size: 14px;
+            }
+
+    #basic-package {
+        background-color: #f9f9f9;
+    }
+
+    #essential-package {
+        background-color: #333;
+    }
+
+    #signature-package {
+        background-color: #f9f9f9;
+    }
+
+
+    /* ==================== */
+    .card-package {
+        background-color: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 -4px 10px rgba(0, 0, 0, 0.1), -4px 0 10px rgba(0, 0, 0, 0.1), 4px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .card-package h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+    .package-title {
+        background-color: #f8f9fa;
+        font-weight: bold;
+        padding: 5px 15px;
+        display: inline-block;
+        border-radius: 20px;
+        margin-bottom: 15px;
+    }
+
+    .card-package ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+        .card-package ul li {
+            margin-bottom: 10px;
+            padding-top: 15px;
+            font-size: 1rem;
+        }
+
+            .card-package ul li i {
+                color: #000;
+                margin-right: 10px;
+            }
+
+    .btn-package {
+        background-color: #343a40;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        padding: 10px 80px;
+        border-radius: 5px;
+    }
+
+        .btn-package:hover {
+            background-color: #495057;
+        }
+    /* ==========Term And Condtion ============== */
+    /* <!--Term And Condtion Page Header --> */
+
+    .page-header {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+    .terms-container {
+        padding: 40px 15px;
+    }
+
+    .terms-box {
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .terms-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .terms-box .icon {
+            font-size: 30px;
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .terms-box h3 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .terms-box p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+</style>
+
+
+
+
+
+<div class="container-fluid p-0 m-0">
+    <!-- Background -->
+    <div class="background">
+        <div class="shape one"></div>
+        <div class="shape one1"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+    </div>
+
+    <!-- Page Header -->
+    <div id="page-header">
+        <h1>Wedding Photography Pricing and Packages</h1>
+        <p>Home > Wedding Photography Pricing and Packages</p>
+    </div>
+
+
+    <div class="container py-5 mt-5 ">
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <h3>Adarsh Studio | Wedding Photography and Videography Services</h3>
+                <h4>"Capturing Moments, Creating Memories Forever"</h4>
+                <p>
+                    Congratulations on your upcoming wedding! At Adarsh Studio, we understand how important it is to preserve the cherished moments of your big day. Our team of talented and experienced photographers is committed to delivering  stunning visuals that will serve as timeless treasures for you and your loved ones.
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <h3>Packages and Services</h3>
+                <p>We offer a variety of wedding photography and videography packages that are thoughtfully curated to cater to your unique preferences. Our primary aim is to capture every emotion, beauty, and joy of your wedding in the most artistic way.</p><br>
+
+                <h5>What We Offer:</h5>
+                <p>
+                    Customized Wedding Albums: A beautifully designed, personalized wedding album showcasing your favorite images.
+                    High-Resolution Digital Copies: Get all your selected photographs in high-resolution digital format for safekeeping and sharing.
+                    Pre-Wedding and Post-Wedding Shoots: Capture candid and memorable moments beyond the wedding day.
+                    Live Streaming Services: Share your big day with family and friends who couldn’t attend, with seamless live streaming.
+                    Personalized Consultation: We provide one-on-one consultations to plan your wedding photography, ensuring that every special moment is captured to perfection.
+                </p>
+
+            </div>
+        </div>
+        <div class="row justify-content-center" id="package-container">
+            <div class="col-md-3 pt-4">
+                <div class="card-package" id="basic-package">
+                    <div class="package-title">Budget</div>
+                    <h4>Basic</h4>
+                    <p class="text-left">
+                        Our Basic package covers the fundamental<br>
+                        aspects of your wedding day. It includes:
+                    </p>
+                    <ul class="text-start">
+                        <li><i class="fas fa-check-circle"></i>1 Artistic / Candid Photographer</li>
+                        <li><i class="fas fa-check-circle"></i>1 Traditional Photographer</li>
+                        <li><i class="fas fa-check-circle"></i>1 Traditional Videographer</li>
+                        <li><i class="fas fa-check-circle"></i>1 Traditional Videographer</li>
+                        <li><i class="fas fa-check-circle"></i>2 - 5 Hours of Pre or Post Wedding Shoot</li>
+                        <li><i class="fas fa-check-circle"></i>Post-processing and editing of selected images.</li>
+                        <li><i class="fas fa-check-circle"></i>Online album proofing</li>
+                        <li><i class="fas fa-check-circle"></i>Classic Albums</li>
+                        <li><i class="fas fa-check-circle"></i>Online gallery for convenient viewing and sharing of your photographs.</li>
+                        <li><i class="fas fa-check-circle"></i>Full length traditional video edited videos on cloud storage</li>
+                    </ul>
+                    <button class="btn btn-package mt-3">Discuss</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-package text-center bg-dark" id="essential-package">
+                    <div class="package-title">Recommended</div>
+                    <h4 class="text-white">Essential</h4>
+                    <p class="text-white ">Enhance your experience with our essential package, including extended coverage</p>
+                    <ul class="text-start text-white">
+                        <li><i class="fas fa-check-circle text-white"></i>2 Artistic / Candid Photographer</li>
+                        <li><i class="fas fa-check-circle text-white"></i>2 Traditional Photographer</li>
+                        <li><i class="fas fa-check-circle text-white"></i>2 Traditional Videographer</li>
+                        <li><i class="fas fa-check-circle text-white"></i>1 Cinematographer</li>
+                        <li><i class="fas fa-check-circle text-white"></i>2 - 5 Hours of Pre or Post Wedding Shoot</li>
+                        <li><i class="fas fa-check-circle text-white"></i>Post-processing and editing of selected images.</li>
+                        <li><i class="fas fa-check-circle text-white"></i>Online album proofing</li>
+                        <li><i class="fas fa-check-circle text-white"></i>Elite Albums</li>
+                        <li><i class="fas fa-check-circle text-white"></i>Online gallery for convenient viewing and sharing of your photographs.</li>
+                        <li><i class="fas fa-check-circle text-white"></i>Full length traditional video edited videos on cloud storage</li>
+                        <li><i class="fas fa-check-circle text-white"></i>5 to 7 min Cinematic Wedding Film - Pure Magic!</li>
+                    </ul>
+                    <button class="btn btn-package mt-3">Discuss</button>
+                </div>
+            </div>
+            <div class="col-md-3 pt-4">
+                <div class="card-package text-center" id="signature-package">
+                    <div class="package-title">Popular</div>
+                    <h4>Signature</h4>
+                    <p>4K videos, offering both traditional video coverage and a mesmerizing wedding film</p>
+                    <ul class="text-start">
+                        <li><i class="fas fa-check-circle"></i>2 Artistic / Candid Photographer</li>
+                        <li><i class="fas fa-check-circle"></i>3 Traditional Photographer</li>
+                        <li><i class="fas fa-check-circle"></i>3 Traditional Videographer 4K</li>
+                        <li><i class="fas fa-check-circle"></i>2 Cinematographer 4K</li>
+                        <li><i class="fas fa-check-circle"></i>2 - 5 Hours of Pre or Post Wedding Shoot</li>
+                        <li><i class="fas fa-check-circle"></i>2 Drone</li>
+                        <li><i class="fas fa-check-circle"></i>Your Choice of ONE Art frame 12"x18"</li>
+                        <li><i class="fas fa-check-circle"></i>Online album proofing</li>
+                        <li><i class="fas fa-check-circle"></i>Online gallery for convenient viewing and sharing of your photographs.</li>
+                        <li><i class="fas fa-check-circle"></i>Full length traditional video edited videos on cloud storage</li>
+                        <li><i class="fas fa-check-circle"></i>5 to 7 min Cinematic Wedding Film 4K - Pure Magic!</li>
+                    </ul>
+                    <button class="btn btn-package mt-3">Discuss</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====---======== -->
+        <div class="row justify-content-center">
+            <div class="col-sm-10 mb-5">
+                <h2 class="mb-3">Additional Service</h2>
+                <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus adipisci quas maiores neque expedita, illo vitae in aliquid. Eos laborum quae aspernatur voluptatibus nostrum. Aut, nisi. Magni iusto praesentium quod aut quam consequatur reiciendis facilis doloribus accusamus hic ratione quibusdam soluta, suscipit quia nisi laudantium eum assumenda mollitia in optio vel voluptatum voluptates. Modi consequatur hic mollitia est, ipsum fugiat odit sint, reiciendis nemo exercitationem ut sunt repellendus voluptas, dicta quaerat autem dolorum molestiae. Totam esse eum et aspernatur nostrum saepe doloremque qui facere iure ea exercitationem nam laboriosam eum perferendis, praesentium at?</p>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            @foreach (PackageMaster pm in Model)
+            {
+
+                <div class="col-md-3 pt-4">
+                    <div class="card-package text-center">
+                        <div class="package-title">@pm.PackageTitle</div>
+                        <h2>₹@pm.Price</h2>
+                        <ul class="text-start">
+                            <li><i class="fas fa-check-circle"></i>@pm.Detail1</li>
+                            <li><i class="fas fa-check-circle"></i>@pm.Detail2</li>
+                            <li><i class="fas fa-check-circle"></i>@pm.Detail3</li>
+                            <li><i class="fas fa-check-circle"></i>@pm.Detail4</li>
+                        </ul>
+                        <button class="btn btn-package mt-3">Discuss</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    <!--Term And Condtion Page Header -->
+    <div class="page-header">
+        <h1>Terms & Conditions</h1>
+        <p>Please read our terms carefully before availing of our services.</p>
+    </div>
+
+    <!-- Terms Section -->
+    <div class="container terms-container">
+        <div class="row gy-4 justify-content-center">
+            <!-- Booking Policy -->
+            <div class="col-sm-5">
+                <div class="terms-box">
+                    <div class="icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Booking Policy</h3>
+                    <p>
+                        To confirm your booking, a 40% advance payment is required. The remaining balance must be cleared at least one week
+                        before the scheduled event. Any delay in payment may result in the cancellation of your booking.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Copyright Policy -->
+            <div class="col-sm-5">
+                <div class="terms-box">
+                    <div class="icon">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <h3>Copyright Policy</h3>
+                    <p>
+                        Adarsh Studio retains the copyright for all captured photographs and videos. We reserve the right to use the content
+                        for promotional purposes. Your media will never be shared or sold without prior consent.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cancellation Policy -->
+            <div class="col-sm-5">
+                <div class="terms-box">
+                    <div class="icon">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <h3>Cancellation Policy</h3>
+                    <p>
+                        Cancellations made within 7 days of the scheduled event are non-refundable. For cancellations made earlier, a 25%
+                        processing fee will be deducted from the advance payment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pricing Policy -->
+            <div class="col-sm-5">
+                <div class="terms-box">
+                    <div class="icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Pricing Policy</h3>
+                    <p>
+                        Our pricing is transparent and non-negotiable. We ensure fair pricing while maintaining high-quality service. For
+                        customized packages, contact us directly for a detailed quotation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+

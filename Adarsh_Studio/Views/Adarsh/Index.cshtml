@@ -1,0 +1,1029 @@
+﻿
+@{
+    ViewBag.PageTitle = "Welcome to Adarsh Studio";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+
+    <style>
+
+        /* =====================Card Section====================================== */
+      
+
+        .custom-card {
+            background-color: #f5f5f5;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            margin-top: 25px;
+        }
+
+            .custom-card .card {
+                background-color: #f5f5f5;
+                transition: transform 0.3s ease;
+                border: none;
+                border-radius: 10px;
+                text-decoration: none;
+            }
+
+            .custom-card:hover .card {
+                transform: scale(1.05); /* Zoom effect on hover */
+                text-decoration: none;
+            }
+
+        .card-body i {
+            transition: color 0.3s ease;
+        }
+
+        .custom-card:hover .card-body i {
+            color: brown;
+        }
+
+        .custom-card:hover .card-title {
+            color: #a33838;
+            text-decoration: none;
+        }
+
+        .custom-card:hover .card-text {
+            color: black;
+        }
+
+        /*=================================== Video Section==================== */
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+            .card img, .card video {
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .card-title {
+            font-weight: bold;
+        }
+
+        .featured-post {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: #888;
+        }
+        /* ==============================Section ========================================= */
+
+        .invitation-section {
+            background-color: #f0f0f0;
+        }
+
+        .invitation-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .invitation-content {
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+            .invitation-content p {
+                font-size: 1rem;
+                color: #555;
+            }
+
+            .invitation-content .btn {
+                font-weight: bold;
+                padding: 10px 20px;
+            }
+
+        .invitation-images {
+            display: flex;
+            flex-direction: center;
+            align-items: center;
+            gap: 15px; /* Space between images */
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 220px; /* Fixed width for images */
+            height: 330px; /* Fixed height for images */
+            overflow: hidden; /* Ensures overlay stays within the image */
+        }
+
+            .image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensures image fits without distortion */
+            }
+
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease; /* Smooth fade-in effect */
+        }
+
+            .hover-overlay i {
+                font-size: 2rem;
+                color: white;
+            }
+
+        .image-wrapper:hover .hover-overlay {
+            opacity: 1; /* Overlay becomes visible on hover */
+        }
+
+        #img2 {
+            margin-top: 200px;
+            margin-left: 50px;
+            margin-bottom: 30px;
+        }
+
+        #img1 {
+            margin-left: 50px;
+        }
+
+        @@media (max-width: 768px) {
+            #img2 {
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+
+            .invitation-images img {
+                margin-top: 20px;
+            }
+        }
+
+
+        /* ================================================================ */
+
+
+        .quote-section {
+            padding: 20px;
+            /* background-color: #f8f9fa; */
+            border-radius: 8px;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+        }
+
+        .quote-button {
+            background: linear-gradient(to right, #434343, #000000);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #custom-card {
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-card img {
+            /* border-radius: 8px; */
+            max-width: 100%;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+            .custom-card img:hover {
+                filter: grayscale(0%);
+            }
+
+        .card-text-content {
+            padding-right: 20px;
+        }
+
+        .card-icon {
+            font-size: 48px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+
+        /* ==========================Servises Start===================== */
+
+
+
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+            .service-card:hover {
+                transform: scale(1.05);
+            }
+
+            .service-card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .service-card .service-info {
+                padding: 15px;
+                text-align: center;
+            }
+
+                .service-card .service-info h3 {
+                    margin: 10px 0;
+                    font-size: 1.2em;
+                    color: #333;
+                }
+
+                .service-card .service-info p {
+                    color: #777;
+                    font-size: 0.9em;
+                    margin: 0;
+                }
+
+        .check-blogs {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+            .check-blogs a {
+                display: inline-block;
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                transition: background 0.3s ease;
+            }
+
+                .check-blogs a:hover {
+                    background: #333;
+                }
+       
+
+        .wedding-banner {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message {
+            margin-top: 400px;
+            color: white;
+            font-size: 4em;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+
+
+    #slider {
+        position: relative;
+        max-width: 400px; /* Fixed width for slider */
+        height: 450px; /* Fixed height for all images */
+        overflow: hidden;
+        border: 2px solid #ddd; /* Optional border */
+        border-radius: 10px; /* Rounded corners */
+        margin: 0 auto; /* Center in column */
+    }
+
+        /* Image styling */
+        #slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the slider area */
+        }
+
+    #slide1, #slide2, #slide3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+        #slide1.active, #slide2.active, #slide3.active {
+            opacity: 1;
+            position: relative;
+        }
+
+    /* Button and text styles */
+    .btn-enquiry {
+        text-decoration:none;
+        background-color: transparent;
+        color: black;
+        border: 1px solid gray;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+        .btn-enquiry:hover {
+            background-color: #a33838;
+            color: white;
+        }
+
+    .btn-call {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        padding-left: 20px;
+    }
+
+        .btn-call:hover {
+            text-decoration: underline;
+            color: #a33838;
+        }
+
+    p {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    /* Responsive alignment */
+    @@media (max-width: 768px) {
+        #slider {
+            max-width: 100%; /* Full width on smaller screens */
+            height: auto; /* Adjust height automatically */
+        }
+
+        .col-md-6 {
+            margin-top: 20px; /* Add space between sections */
+        }
+    }
+
+
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+    }
+
+
+   
+
+    </style>
+
+
+<!-- Bootstrap Carousel -->
+<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/gallery/indexslider2.jpg" class="d-block w-100" alt="Image 1">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>The Heart of Artistic Creation</h5>
+                <p>: Find inspiration in every corner of our studio, where art, technology, and creativity come together to produce exceptional work.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/gallery/indexslide1.png" class="d-block w-100" alt="Image 2">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Transform Your Ideas into Reality</h5>
+                <p>With state-of-the-art equipment and a collaborative atmosphere, our studio empowers your vision to take shape.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="~/gallery/indexslider3.jpg" class="d-block w-100" alt="Image 3">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>The Heart of Artistic Creation</h5>
+                <p> A dynamic environment for photographers, artists, designers, and innovators. Let your creativity flow in our versatile studio.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Dotted Pagination -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    <!-- Dotted Pagination -->
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+</div>
+       
+ 
+
+    @* ===================Second IMG SLIDER JS =========================== *@
+
+    <section class="invitation-section d-flex align-items-center justify-content-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <h2 class="invitation-title" style="color:#a33838">About Adarsh Studio</h2>
+                    <div class="invitation-content">
+                    <p style="font-size:20px;">Welcome to Adarsh Studio, where creativity meets precision!</p>
+                        <p>
+                        
+
+                        At Adarsh Studio, we specialize in crafting innovative and impactful designs that elevate brands and captivate audiences. With a passion for design and
+                        a commitment to excellence, we bring your ideas to life through personalized and tailored solutions. Whether you're a startup looking to make your mark or an 
+                        established business aiming to refresh your identity, our team is here to help you stand out in a crowded marketplace.
+                        </p>
+                    
+                    </div>  
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="invitation-images">
+                        <div class="image-wrapper" id="img1">
+                            <img src="/gallery/indeximg1.png" alt="Groom Image" class="img-fluid">
+                            <div class="hover-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                        <div class="image-wrapper" id="img2">
+                            <img src="/gallery/indeximg2.jpg" alt="Bride and Groom Image" class="img-fluid">
+                            <div class="hover-overlay">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* ================================================================== *@
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Card 1: Candid/Artistic Photography -->
+            <div class="col-sm-4">
+                <a href="#" class="custom-card" style="text-decoration: none;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-camera" style="font-size: 50px;"></i> <!-- Font Awesome Icon -->
+                        <h5 class="card-title" style="color:#a33838">Candid/Artistic Photography</h5>
+                            <p class="card-text"> Candid photography is all about capturing raw emotions and genuine moments. At Adarsh Studio, we take pride in preserving these precious memories. With a perfect blend of creativity and professionalism, we ensure your special moments stay with</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 2: Traditional Photography -->
+            <div class="col-sm-4">
+                <a href="#" class="custom-card" style="text-decoration: none;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-camera-retro" style="font-size: 50px;"></i> <!-- Font Awesome Icon -->
+                        <h5 class="card-title" style="color:#a33838">Traditional Photography</h5>
+                            <p class="card-text">At Adarsh Studio, traditional wedding photography is all about timeless elegance. From perfectly posed shots to warm smiles, we capture the essence of your special day. It's about preserving classic moments that you'll cherish forever—Say Cheese!</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Card 3: Wedding Film -->
+            <div class="col-sm-4">
+                <a href="#" class="custom-card" style="text-decoration: none;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-film" style="font-size: 50px;"></i> <!-- Font Awesome Icon -->
+                        <h5 class="card-title" style="color:#a33838">Wedding Film</h5>
+                            <p class="card-text">At Adarsh Studio, we believe a wedding is like a beautiful movie—an enchanting blend of love, joy, and timeless memories. Every moment tells a story, and capturing this magical fairy-tale is what we do best.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+  
+
+       
+   
+
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <!-- Image Slider Section -->
+            <div class="col-sm-4">
+                <div id="slider">
+                    <div id="slide1" class="active">
+                        <img src="~/gallery/wed1.jpg" alt="Wedding Image 1">
+                    </div>
+                    <div id="slide2">
+                        <img src="/gallery/services2.jpeg" alt="Wedding Image 2">
+                    </div>
+                    <div id="slide3">
+                        <img src="~/gallery/services3.jpg" alt="Wedding Image 3">
+                    </div>
+                </div>
+            </div>
+            <!-- Text Section -->
+            <div class="col-md-6">
+                <span class="badge bg-secondary mb-3">Wedding Photography</span>
+            <h2 class="service-heading" style="color:#a33838">Services</h2>
+                <p>
+                    Adarsh Studio offers exceptional wedding photography and cinematography services.
+                    We specialize in capturing unforgettable moments at weddings across India and internationally, with experiences in destinations like Paris, London, Australia, Singapore, Sri Lanka, and Thailand.
+                </p>
+                <p>
+                    Our services include Candid Photography, Wedding Cinematics, and Traditional Wedding Photography, ensuring your memories are preserved beautifully and artistically.
+                </p>
+                @Html.ActionLink("Book Now","Booking","Adarsh",null,new{@class="btn-enquiry"})
+               
+                <a href="/Adarsh/Service" class="btn-call">View More</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentIndex = 1; // Start with the first slide
+            const totalSlides = 3; // Number of slides
+
+            function showSlide(index) {
+                // Hide all slides
+                for (let i = 1; i <= totalSlides; i++) {
+                    const slide = document.getElementById('slide' + i);
+                    slide.classList.remove('active');
+                }
+
+                // Show the active slide
+                const activeSlide = document.getElementById('slide' + index);
+                activeSlide.classList.add('active');
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex % totalSlides) + 1;
+                showSlide(currentIndex);
+            }
+
+            // Initialize the slider
+            showSlide(currentIndex);
+
+            // Change slide every 3 seconds
+            setInterval(nextSlide, 3000);
+        });
+    </script>
+
+   
+    <!-- =========================== Video Section ================ -->
+
+    <div class="container py-5">
+        <div class="featured-post">Capturing timeless memories,</div>
+    <h2 class="text-center mb-4" style="color:#a33838">Read from the Blog</h2>
+        <p class="text-center mb-5">My photography weaves together the beautiful tales of people, places, and the special moments that define the day.</p>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <video class="card-img-top" src="./wedVideo/video1.mp4" controls></video>
+                    <div class="card-body">
+                        <h5 class="card-title">Celebrating the Union of Two Cultures</h5>
+                        <p class="card-text">Brahmin-Marwari Wedding at RR Thoranam Mahal, Coimbatore</p>
+                        <small>Shruthi & Omkar</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <video class="card-img-top" src="./wedVideo/video2.mp4" controls></video>
+                    <div class="card-body">
+                        <h5 class="card-title">A Blissful Haldi & Sangeet Celebration</h5>
+                        <p class="card-text">"Celebrate the beauty of Mehndi, where intricate designs weave stories of joy and togetherness."</p>
+                        <small>Shruthi & Omkar</small><br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <video class="card-img-top" src="./wedVideo/video3.mp4" controls></video>
+                    <div class="card-body">
+                        <h5 class="card-title">Haldi Ceremony</h5>
+                        <p class="card-text">"Celebrate the vibrant hues and heartfelt moments of your Haldi ceremony, where love and laughter come together."</p>
+                        <small></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* +++++=============================================++++++++++++++++++++++++++++++ *@
+
+        <div class="container mt-5 mb-5 pb-4" style="background-color:beige">
+            <div class="row align-items-center">
+                <!-- Left Side Content -->
+                <div class="col-md-6">
+                    <div class="quote-section">
+                        <span class="badge bg-light text-dark mb-2">Premium Services</span>
+                       <p style="text-align:justify;">
+                        At Adarsh Studio, we offer a suite of premium services tailored to meet the unique needs of our most discerning clients. Whether you're looking for high-end photography, custom video production, or exceptional design services, our premium offerings provide you with the best in quality, creativity, and expertise.
+
+                       </p>
+
+                  
+                    </div>
+                </div>
+
+                <!-- Right Side Card -->
+                <div class="col-md-6">
+                    <div class="custom-card" id="custom-card">
+                        <!-- Card Content -->
+                        <div class="card-text-content">
+                            <i class="fa-solid fa-camera-retro card-icon mb-3"></i>
+                            <h4 class="mb-5">Discover some of the Artistic Approach Photography</h4>
+                            <a href="/Adarsh/Contact" class="text-decoration-none text-dark mt-5">Contact us <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <!-- Card Image -->
+                        <div>
+                            <img src="~/gallery/bridesit.JPG" alt="Wedding Photography" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--================================ Ouer Servises =======================================-->
+
+
+        <div class="container mt-5">
+            <div class="header">
+            <h1 style="color:#a33838">More Services</h1>
+                <p>Pictures tell a story. Grab your picture here.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/couple1.jpg" alt="Portrait Photoshoot">
+                        <div class="service-info">
+                            <h3>Portrait Photoshoot</h3>
+                            <p>Capture beautiful moments with a personalized portrait photoshoot.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/coupledinner.jpg" alt="Maternity Photoshoot">
+                        <div class="service-info">
+                            <h3>Maternity Photoshoot</h3>
+                            <p>Celebrate the journey of motherhood with a stunning maternity shoot.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/preweddingcouple.jpg" alt="Candid Photography">
+                        <div class="service-info">
+                            <h3>Candid Photography</h3>
+                            <p>Let us capture the unscripted moments of your life.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/couplefire.jpg" alt="Pre-Wedding Photoshoot">
+                        <div class="service-info">
+                            <h3>Pre-Wedding Photoshoot</h3>
+                            <p>Get ready for the big day with a romantic pre-wedding shoot.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/couple.jpg" alt="Drone Photography">
+                        <div class="service-info">
+                            <h3>Drone Photography</h3>
+                            <p>Elevate your wedding with stunning aerial views and drone shots.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="service-card" onclick="window.location.href='#'">
+                        <img src="~/gallery/prewed3.jpg" alt="Live Streaming">
+                        <div class="service-info">
+                            <h3>Live Streaming</h3>
+                            <p>Share your wedding moments with friends and family through live streaming.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+
+        #card1 {
+            margin: 50px auto;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 -4px 10px rgba(0, 0, 0, 0.1), -4px 0 10px rgba(0, 0, 0, 0.1), 4px 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.8s ease-out;
+        }
+
+            #card1.visible {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+        #timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+            #timeline::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 10%;
+                right: 10%;
+                height: 4px;
+                background: #ddd;
+                z-index: 1;
+                transform: translateY(-50%);
+            }
+
+        .step {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            width: 24%;
+        }
+
+            .step::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 24px;
+                height: 24px;
+                background: #fff;
+                border: 4px solid #333;
+                border-radius: 50%;
+                z-index: 3;
+                transition: transform 0.3s ease;
+            }
+
+            .step:hover::before {
+                transform: translate(-50%, -50%) scale(1.4);
+                background: maroon;
+            }
+
+        #progress-bar {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            height: 4px;
+            background: #333;
+            z-index: 0;
+            transform: translateY(-50%);
+            transition: width 0.8s ease-out;
+            width: 0;
+        }
+
+        .step h5 {
+            font-weight: bold;
+        }
+
+        .step p {
+            margin-top: 35px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #card1-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #card1-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /*======================= Responsive Styling ============= */
+
+        /* Tablet View */
+        @@media (max-width: 992px) {
+            #card1 {
+                padding: 50px;
+            }
+
+            #timeline {
+                padding: 0 10px;
+            }
+
+            .step {
+                width: 22%;
+            }
+
+            #timeline::before, #progress-bar {
+                left: 8%;
+                right: 8%;
+            }
+        }
+
+        /* Medium Devices - Tablets */
+        @@media (max-width: 768px) {
+            #card1 {
+                padding: 40px;
+            }
+
+            #timeline {
+                flex-direction: column;
+                align-items: center;
+            }
+
+                #timeline::before {
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 4px;
+                    height: 90%;
+                }
+
+            #progress-bar {
+                left: 50%;
+                transform: translateX(-50%);
+                height: 0;
+                width: 4px;
+                transition: height 0.8s ease-out;
+            }
+
+            .step {
+                width: 100%;
+                margin: 30px 0;
+            }
+
+                .step::before {
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+        }
+
+        /* Mobile Devices */
+        @@media (max-width: 576px) {
+            #card1 {
+                padding: 30px;
+            }
+
+            #card1-title {
+                font-size: 18px;
+            }
+
+            #card1-subtitle {
+                font-size: 14px;
+            }
+
+            .step h5 {
+                margin-top: 20px;
+                font-size: 16px;
+            }
+
+            .step p {
+                font-size: 12px;
+            }
+
+            .step {
+                margin: 20px 0;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            #timeline {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                padding: 20px 0;
+            }
+
+                #timeline::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    width: 4px;
+                    height: 100%;
+                    background: #ddd;
+                    transform: translateX(-50%);
+                }
+
+            .step {
+                width: 100%;
+                text-align: center;
+                position: relative;
+                margin-bottom: 40px;
+            }
+
+                .step::before {
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+            #progress-bar {
+                width: 4px;
+                height: 0;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                transition: height 0.8s ease-out;
+            }
+        }
+    </style>
+    <div class="container">
+        <div id="card1">
+            <h4 id="card1-title">Workflow Matters A Lot</h4>
+            <p id="card1-subtitle">At Adarsh Studio, we meticulously plan every step, from pre-shoot preparations to the final post-processing. Our goal is to capture each moment perfectly, ensuring every photo tells its own story. We provide our clients with their memories in the most beautiful and unforgettable way.</p>
+
+            <div id="timeline">
+                <div id="progress-bar"></div>
+                <div class="step">
+                    <h5>Pre-Planning</h5>
+                    <p>We plan and analyze client requirements</p>
+                </div>
+                <div class="step">
+                    <h5>On Shoot</h5>
+                    <p>We capture the precise moments</p>
+                </div>
+                <div class="step">
+                    <h5>Post Processing</h5>
+                    <p>Enhancing your moments</p>
+                </div>
+                <div class="step">
+                    <h5>Delivered</h5>
+                    <p>Get a lifetime moment as deliverables</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const card = document.querySelector("#card1");
+            const progressBar = document.querySelector("#progress-bar");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        progressBar.style.width = "76%"; // Adjusted width for better alignment
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(card);
+        });
+    </script>
+

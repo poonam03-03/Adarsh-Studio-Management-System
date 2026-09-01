@@ -1,0 +1,454 @@
+﻿
+@{
+    ViewData["Title"] = "Booking";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+@model Adarsh_Studio.Models.BookingMaster
+
+
+   <style>
+        .section-heading {
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            color: #a33838;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+    .form-control {
+        border-radius: 0; 
+        border: 2px solid black; 
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa; 
+        border: 2px solid black; 
+    
+    }
+
+    .input-group {
+        margin-bottom: 15px; 
+   
+    }
+
+    .btn-primary {
+        border-radius: 0; 
+        border: 2px solid black; 
+    }
+
+    /* Custom styles for the background image and overlay */
+    .services-background {
+        background-image: url('/gallery/bg-booking.jpg'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        height: 300px; /* Adjust as needed */
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    }
+
+    .services-heading {
+        position: relative;
+        z-index: 1; /* Ensures the heading is above the overlay */
+        color: #fff;
+        text-align: center;
+        padding-top: 100px; /* Adjust padding to center the heading */
+    }
+
+    .err {
+        color: red;
+        font-size: 0.875rem; /* Smaller text size */
+        margin-top: 5px; /* Space between the input field and the error message */
+        display: block; /* Make it a block element to appear below the input */
+    }
+
+    .form-label{
+        font-weight:bold;
+    }
+
+    span{
+        color:red;
+    }
+
+    .book-btn {
+        background-color: black;
+        color: white;
+        border: none;
+        text-decoration: none;
+        padding: 8px 16px;
+    }
+
+        .book-btn:hover {
+            background-color: #a33838;
+        }
+</style>
+
+
+<div class="services-background">
+    <div class="overlay"></div>
+    <div class="services-heading">
+        <h1 style="font-weight:bold">Book Now</h1>
+        <h3 style="color:#a33838;font-weight:bold">
+            Book Your Creative Session Today!
+        </h3>
+    </div>
+</div>
+
+<div class="row updates">
+    <div class="col-sm-11">
+        <marquee direction="left" onmouseover="stop()" onmouseout="start()">
+            <a class="bi bi-3-circle-fill"></a> Events Are Ready
+        </marquee>
+    </div>
+    <div class="col-sm-1 bg-warning text-white text-center">Updates</div>
+</div>
+
+
+
+    <div class="container my-5">
+       <div class="row">
+        <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold">Book Your Session</h2>
+           <div class="col-sm-2"></div>
+       
+        <div class="col-sm-8 p-3" style="background:beige;border:2px solid black;">
+          <p class="text-success text-center">@ViewBag.savebooking</p>
+           
+         
+          
+            <!--first row-->
+            @using (Html.BeginForm("Booking","Adarsh",FormMethod.Post))
+            {
+            <div class="row mb-3">               
+                <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            @Html.TextBox("ClientName", null, new { @class = "form-control", placeholder = "Enter Your Name", Type = "text", id = "bname" }) 
+                            
+
+                    </div>
+                        <span id="bmname"></span>
+                        
+                </div>
+                   
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Contact </label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                           
+                            @Html.TextBox("MobileNo", null, new { @class = "form-control", placeholder = "Enter Mobile Number" ,Type="number",id="bmobno"})
+
+                        </div>
+                        <span id="bmmobno"></span>
+                    </div>
+                </div>
+
+                <!--second row-->
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Email Id</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            @Html.TextBox("EmailId", null, new { @class = "form-control", placeholder = "Enter Email Id" ,Type="email",id="bemail"})
+
+                        </div>
+                        <span id="bmemail"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Service</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa-brands fa-servicestack"></i></span>
+                           
+                                @Html.DropDownListFor(model => model.ServiceId,(SelectList)ViewData["Service"], "Select Service",new { @class = "form-control",id="bservice" })
+
+                             
+                        </div>
+                        <span id="bmservice"></span>
+                    </div>
+                </div>
+
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Current City</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-city"></i></span>
+                            @Html.DropDownListFor(model => model.CurrentCity,
+                                     (IEnumerable<SelectListItem>)ViewBag.City,
+                                     "-- Select Current City --",
+                                     new { @class = "form-control", id = "bccity" })
+
+
+                        </div>
+                        <span id="bmccity"></span>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Location Of Shooting</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            @Html.DropDownListFor(model => model.LocationOfShooting,
+                                     (IEnumerable<SelectListItem>)ViewBag.City,
+                                     "-- Select Location  --",
+                                     new { @class = "form-control", id = "blcity" })
+                        </div>
+                        <span id="bmlcity"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Remark</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-circle-info"></i></span>
+                            @Html.TextBox("Remark", null, new { @class = "form-control", placeholder = "Enter Additional ", Type = "text", id = "bremark" })
+                           
+                        </div>
+                        <span id="bmremark"></span>
+                    </div>  
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Expected Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-hand-holding-dollar"></i></span>
+                            <input type="text" id="Budget" class="form-control" readonly />
+
+                        </div>
+                    </div>
+                </div>
+              
+           <!--third row-->
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Discounted Rate</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-money-bill-1"></i></span>
+                           
+                            <input type="number" id="DiscountedRate" class="form-control" readonly />
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Category</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-list"></i></span>
+                            <input type="text" id="Category" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+                <!--fourth row-->
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Inclusions</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-check"></i></span>
+                            <input type="text" id="Inclusions" class="form-control" readonly />
+                           
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Exclusions</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-xmark"></i></span>
+                            <input type="text" id="Exclusions" class="form-control" readonly />
+                        </div>
+                    </div>
+                </div>
+            <div class="mb-3">
+                    <label for="exclusions" class="form-label">Address</label>
+                @Html.TextArea("Address",null,new{@class="form-control",placeholder="Enter Your Address",rows="4",id="baddress"})
+            </div>
+
+                
+            <div class="text-center">
+                <button type="submit" id="bookbtn" class="btn book-btn">Submit Booking</button>
+                    <input type="reset" class="btn btn-secondary" value="reset">
+            </div>
+                
+       }
+
+        </div>
+
+      
+        <div class="col-sm-2"></div>
+    </div>
+    </div>
+
+    <script>
+    $(document).ready(function(){
+                $("#bname").focus();
+                //validate of click of submit button
+                $("#bookbtn").click(function(){
+                    var result=true;
+                    var name,email,mobno,address,remark,location,current,service;
+                    //reading values of all input fields
+                    name=$("#bname").val().trim();
+                    email=$("#bemail").val().trim();
+                    mobno=$("#bmobno").val().trim();
+                    address=$("#baddress").val().trim();
+                    remark=$("#bremark").val().trim(); 
+                    location=$("#blcity").val().trim();
+                    current=$("#bccity").val().trim();
+                    service=$("#bservice").val().trim();
+                    
+                   
+                    //removind past error messages
+                    $(".err").remove();
+                    //validating name
+                    if(name.length==0)
+                    {
+                        $("#bmname").text("Please enter your name.");
+                        result=false;
+                    }
+                    else if(name.length<3)
+                    {
+                        $("#bmname").text("Please enter valid name.");
+                        result=false;
+                    }
+
+                   
+                    //validate email
+                    if(email.length==0)
+                    {
+                        $("#bmemail").text("Please enter Your email.");
+                        result=false;
+                    }
+                    //validate mobile no
+                    if(mobno.length==0)
+                    {
+                        $("#bmmobno").text("Please enter Your Mobile Number.");
+                        result=false;
+                    }
+                    else if(mobno!=10)
+                    {
+                        $("#bmmobno").text("Please enter Valid Mobile Number.");
+                        result=false;
+                    }
+                    else
+                    {
+                        var fdigit=parseInt(mobno.charAt(0));
+                        if(!(fdigit>=6 && fdigit<=9))
+                        {
+                            $("#bmmobno").text("Invalid Mobile Number.");
+                            result=false;
+                        }
+                    }
+                    if(remark.length==0)
+                    {
+                        $("#bmremark").text("Please enter your Remark.");
+                        result=false;
+                    }
+
+                    if(location.length==0)
+                    {
+                        $("#bmlcity").text("Choose Location Of Shooting.");
+                        result=false;
+                    }
+                    if(current.length==0)
+                    {
+                        $("#bmccity").text("Choose Location Of Shooting.");
+                        result=false;
+                    }
+                    if(service.length==0)
+                    {
+                        $("#bmservice").text("Choose Location Of Shooting.");
+                        result=false;
+                    }
+                  
+                    //validate address
+                    if(address.length==0)
+                    {
+                        $("#baddress").after("<span class='err'>Please enter your address.</span>");
+                        result=false;
+                    }
+                    else{
+                   //word count
+                   var count=0,x;
+                  for( x of msg)
+                   {
+                  if(x==' ' || x==',' || x=='?' || x=='!')
+                     count++;
+                  }
+                  if(count<8)
+                 {
+                    $("#baddress").after("<span class='err'>Please enter full address.</span>");
+                  result=false;
+                  }
+                  }
+                   
+                    return result;
+
+                })
+
+                // name
+            $("#bname").blur(function(){
+                var uname=$(this).val().trim();
+                var updateName=uname.charAt(0).toUpperCase();
+                for(x=1;x<uname.length;x++)
+            {
+                var ch=uname.charAt(x);
+                if(ch==' ')
+                  {
+                    updateName=updateName+" ";
+                    ch=uname.charAt(x+1).toUpperCase();
+                    updateName=updateName+ch;
+                    x++;
+                  }
+                  else
+                    updateName=updateName+ch;
+            }
+               $(this).val(updateName);
+            });
+            })
+
+
+
+
+        $('#bservice').change(function(){
+            var serviceId=$(this).val();
+
+            if(serviceId){
+                $.ajax({
+                url:"/Adarsh/GetServiceDetails",
+                    data:{serviceId:serviceId},
+                    success:function(data){
+                    $("#ServiceType").val(data.serviceType);
+                    $("#Category").val(data.category);
+                    $("#Budget").val(data.budget);
+                    $("#DiscountedRate").val(data.discountedRate);
+                    $("#Inclusions").val(data.inclusions);
+                    $("#Exclusions").val(data.exclusions);
+                    }
+                });
+
+            }else{
+                $("#ServiceDetails input").val('');
+            }
+        });
+    </script>
+
+
+
+
+    
+
+   
+    
+    

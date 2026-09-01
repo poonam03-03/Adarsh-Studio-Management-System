@@ -1,0 +1,433 @@
+﻿@{
+    ViewBag.PageTitle = "About Us";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+
+@using Adarsh_Studio.Models
+@model IEnumerable<StaffMaster>
+
+
+
+
+<style>
+    /* General card styling */
+    .expertise-card {
+    transition: all 0.5s ease-in-out; /* Slow easing for all properties */
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .expertise-card i {
+    font-size: 40px;
+    margin-bottom: 20px;
+    transition: all 0.5s ease-in-out; /* Slow easing on icon */
+    }
+
+    .expertise-card h5 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    transition: all 0.5s ease-in-out; /* Slow easing on text */
+    }
+
+    .expertise-card p {
+    font-size: 1rem;
+    color: black;
+    transition: all 0.5s ease-in-out; /* Slow easing on paragraph */
+    }
+
+   
+
+
+    .expertise-card-illustration {
+    background-color:white;
+    }
+
+
+
+    /* Hover Background Color */
+    .expertise-card:hover {
+    background-color: beige; /* Background change on hover */
+    color: black; /* Text color change */
+    box-shadow: black;
+    }
+
+    .expertise-card:hover i {
+    color: #a33838; /* Icon color change */
+
+    }
+    /* Custom styles for the background image and overlay */
+    .services-background {
+    background-image: url('/gallery/aboutt.png'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 300px; /* Adjust as needed */
+    }
+
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    }
+
+    .services-heading {
+    position: relative;
+    z-index: 1; /* Ensures the heading is above the overlay */
+    color: #fff;
+    text-align: center;
+    padding-top: 100px; /* Adjust padding to center the heading */
+    }
+
+
+   
+
+</style>
+
+
+<div class="services-background">
+    <div class="overlay"></div>
+    <div class="services-heading">
+        <h1 style="font-weight:bold">About Us</h1>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- About Us Section -->
+    <div class="row mt-5">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5" style="text-align:justify">
+            <h2 class="mb-3" style="color:#a33838;background-color:antiquewhite;font-weight:bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">About Us</h2>
+            <p>Welcome to Adarsh Studio, a place where creativity and innovation come together to produce stunning works of art. We are a team of passionate designers, developers, and artists who believe in pushing the boundaries of what is possible.</p>
+            <p>Founded in 2008, we specialize in Candid Photography,wedding,pre-wedding photoshoot,live streaming, card printing. Our mission is to deliver high-quality, customized solutions that meet the unique needs of each of our clients.</p>
+            <p>At Adarsh Studio, we pride ourselves on our attention to detail, our collaborative approach, and our commitment to excellence. We strive to turn every project into a masterpiece, blending creativity with technical expertise.</p>
+            <p>Whether you’re looking for [specific services] or need a team to bring your vision to life, we’re here to help. Let’s create something amazing together!</p>
+        </div>
+        <div class="col-sm-5">
+            <img src="~/gallery/about1.jpg" width="100%" alt="Studio Image" class="about-image">
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5">
+            <img src="~/gallery/studioimage1.jpeg" width="100%"  alt="Studio Image" class="about-image">
+        </div>
+        <div class="col-sm-5 about-content" style="text-align:justify">
+            <h2 class="mb-3 mt-2" style="color:#a33838;background-color:antiquewhite;font-weight:bold; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Our Story</h2>
+            <p>Welcome to Adarsh Studio, a place where creativity and innovation come together to produce stunning works of art. We are a team of passionate designers, developers, and artists who believe in pushing the boundaries of what is possible.</p>
+            <p>Founded in 2008, we specialize in Candid Photography,wedding,pre-wedding photoshoot,live streaming, card printing. Our mission is to deliver high-quality, customized solutions that meet the unique needs of each of our clients.</p>
+            <p>At Adarsh Studio, we pride ourselves on our attention to detail, our collaborative approach, and our commitment to excellence. We strive to turn every project into a masterpiece, blending creativity with technical expertise.</p>
+            <p>Whether you’re looking for [specific services] or need a team to bring your vision to life, we’re here to help. Let’s create something amazing together!</p>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+    </div>
+
+
+    <style>
+       
+
+
+        .about-section {
+            padding: 50px 0;
+        }
+
+        .about-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+            .about-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .about-img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .about-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 15px;
+        }
+
+        #second {
+            height: 600px;
+        }
+    </style>
+
+    <div class="container about-section">
+        <div class="row align-items-center justify-content-center">
+            <!-- Left Image -->
+            <div class="col-sm-3">
+                <div class="about-card">
+                    <img src="~/teamimages/ratnagarsingh.jpg" alt="Mr. Ratnakar Singh" class="about-img">
+                    <div class="name">Mr. Ratnakar Singh</div>
+                </div>
+            </div>
+
+            <!-- Right Content -->
+            <div class="col-sm-5 about-content">
+                <h3 class="text-center">The Founder - Mr. Ratnakar Singh</h3>
+                <p class="about-text">
+                    <strong>Mr. Ratnakar Singh</strong> founded <strong>Adarsh Studio</strong> in <strong>2008</strong> with a dream to create a space where memories are beautifully captured and preserved.
+                    <br><br>
+                    With immense dedication and passion, he built the foundation of this studio, ensuring that every picture taken tells a story.
+                    <br><br>
+                    Under his guidance, <strong>Adarsh Studio</strong> became a well-recognized name in the field of photography and videography. His hard work and commitment laid the path for success.
+                    <br><br>
+                    Today, his sons, <strong>Adarsh Singh</strong> and <strong>Yash Singh</strong>, are carrying forward his legacy, taking the business to new heights.
+                </p>
+            </div>
+        </div>
+        <div class="row align-items-center text-center" id="second">
+            <!-- Left Image -->
+            <div class="col-sm-3">
+                <div class="about-card">
+                    <img src="~/teamimages/adarsh.jpg" alt="Adarsh Singh" class="about-img">
+                    <div class="name">Adarsh Singh</div>
+                </div>
+            </div>
+
+            <!-- Center Content -->
+            <div class="col-sm-6 about-content">
+                <h3 class="text-center">Adarsh Studio – Shankargarh</h3>
+                <p class="about-text">
+                    Adarsh Studio was founded in <strong>2008</strong> by <strong>Mr. Ratnakar Singh</strong> with a vision to capture people's precious moments beautifully. Through his hard work and dedication, he laid the foundation of this studio.
+                    <br><br>
+                    Today, the studio is successfully managed by his two sons, <strong>Adarsh Singh</strong> and <strong>Yesh Singh</strong>. With their determination and efforts, they have taken the business to new heights.
+                    <br><br>
+                    Adarsh Studio currently employs around <strong>20 professionals</strong>, including both part-time and permanent staff. The studio offers a wide range of services, including <em>photography, videography, wedding shoots, pre-wedding shoots, post-wedding shoots, birthday parties, and live streaming.</em>
+                    <br><br>
+                    Today, <strong>Adarsh Studio</strong> is not just a photography studio but a place where memories come to life!
+                </p>
+            </div>
+
+            <!-- Right Image -->
+            <div class="col-sm-3">
+                <div class="about-card">
+                    <img src="~/teamimages/adarshsingh.jpg" alt="Yash Singh" class="about-img">
+                    <div class="name">Yash Singh</div>
+                </div>
+            </div>
+        </div>
+   
+       </div>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $(".about-content").addClass("show");
+            }, 300);
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Main Container -->
+<div class="container-fluid my-5">
+    <h2 class="text-center mb-4" style="color:#a33838; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;font-weight:bold;">Our Expertise</h2>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <!-- Brand Identity Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration  border border-danger shadow-lg">
+                        <i class="fas fa-pencil-alt"></i>
+                        <h5>Brand Identity</h5>
+                        <p>We craft unique and memorable brand identities that resonate with your audience.</p>
+                    </div>
+                </div>
+
+                <!-- Web Design Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration border border-danger shadow-lg">
+                        <i class="fas fa-laptop-code"></i>
+                        <h5>Web Design</h5>
+                        <p>Our websites are built to be beautiful, responsive, and user-friendly, ensuring a great online presence.</p>
+                    </div>
+                </div>
+
+                <!-- Illustration Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration border border-danger shadow-lg">
+                        <i class="fas fa-paint-brush"></i>
+                        <h5>Illustration</h5>
+                        <p>Our custom illustrations bring your brand's message to life with vibrant and engaging visuals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <!--next row-->
+    <!-- Motion Graphics Card -->
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration border border-danger shadow-lg">
+                        <i class="fas fa-video"></i>
+                        <h5>Motion Graphics</h5>
+                        <p>We create dynamic visuals and animations that help tell your brand's story in a memorable way.</p>
+                    </div>
+                </div>
+
+                <!-- Photography Card -->
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration border border-danger shadow-lg">
+                        <i class="fas fa-camera-retro"></i>
+                        <h5>Photography</h5>
+                        <p>Our professional photography captures the essence of your brand through stunning visuals.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="expertise-card expertise-card-illustration border border-danger shadow-lg">
+                        <i class="fas fa-video"></i>
+                        <h5>Motion Graphics</h5>
+                        <p>We create dynamic visuals and animations that help tell your brand's story in a memorable way.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    </div>
+
+
+   
+
+
+
+    <style>
+        .carousel-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 370px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-content {
+        text-align: center;
+        color:black;
+        background:gray;
+        
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+       
+    </style>
+    <h1 class="text-center p-3" style="color:#a33838;font-weight:bold;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Meet Our Team</h1>
+    <div class="container my-5">
+        <div id="carouselExample" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var staff in Model)
+                {
+                   
+                        <div class="carousel-item @((Model.First() == staff) ? "active" : "")" style="background-image: url('/Images/aboutbg2.jpg');">
+                            <div class="carousel-content m-5 p-3">
+                                <img src="@Url.Content("~/uploads/" + staff.ImgFileName)" alt="@staff.Name"  class="profile-image">
+                                <h3 class="text-center">@staff.Name</h3>
+                                <p class="text-center">@staff.Role</p>
+                                <p class="text-center">@staff.Specialization</p>
+                            </div>
+                        </div>
+                     }
+                    </div>
+                
+                <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS and dependencies -->
+   
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+      
+
+
+
+
+
+
+
+
+
+
+

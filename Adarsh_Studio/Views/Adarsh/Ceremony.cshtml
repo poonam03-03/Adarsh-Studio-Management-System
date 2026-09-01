@@ -1,0 +1,409 @@
+﻿
+@{
+    ViewData["Title"] = "Ceremony";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+
+
+
+    <style>
+
+        #contentHM {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .content-section {
+            padding: 50px 15px;
+        }
+
+        .big-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .small-images img {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+        }
+
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        @@media (max-width: 768px) {
+            .small-images img {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* =============== */
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+        }
+
+            .video-container iframe,
+            .video-container video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+            .content p {
+                font-size: 1rem;
+                color: #555;
+            }
+        /* Section styling */
+        .mehndi-section {
+            padding: 50px 0;
+            /* background-color: #f8f9fa; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container styling */
+        .mehndi-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+            /* Image styling */
+            .mehndi-container img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        /* Hover slider styling */
+        .hover-slider {
+            position: absolute;
+            bottom: -100px; /* Hidden below the container */
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Black background with reduced opacity */
+            color: #fff;
+            text-align: center;
+            padding: 20px 10px;
+            font-size: 1rem;
+            transition: bottom 0.4s ease; /* Smooth slide-up effect */
+        }
+
+        /* Hover effect */
+        .mehndi-container:hover .hover-slider {
+            bottom: 0; /* Slide up to show the slider */
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .mehndi-container {
+                width: 100%; /* Full width on smaller screens */
+                height: auto;
+            }
+        }
+
+
+        /* ================= */
+
+        .invitation-section {
+            background-color: #f0f0f0;
+        }
+
+        .invitation-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .invitation-content {
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+            .invitation-content p {
+                font-size: 1rem;
+                color: #555;
+            }
+
+            .invitation-content .btn {
+                font-weight: bold;
+                padding: 10px 20px;
+            }
+
+        .invitation-images {
+            display: flex;
+            flex-direction: center;
+            align-items: center;
+            gap: 15px; /* Space between images */
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 220px; /* Fixed width for images */
+            height: 330px; /* Fixed height for images */
+            overflow: hidden; /* Ensures overlay stays within the image */
+        }
+
+            .image-wrapper img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensures image fits without distortion */
+            }
+
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; /* Hidden by default */
+            transition: opacity 0.3s ease; /* Smooth fade-in effect */
+        }
+
+            .hover-overlay i {
+                font-size: 2rem;
+                color: white;
+            }
+
+        .image-wrapper:hover .hover-overlay {
+            opacity: 1; /* Overlay becomes visible on hover */
+        }
+
+        #img2 {
+            margin-top: 200px;
+            margin-left: 50px;
+            margin-bottom: 30px;
+        }
+
+        @@media (max-width: 768px) {
+            #img2 {
+                margin-top: 0px;
+                margin-left: 0px;
+            }
+
+            .invitation-images img {
+                margin-top: 20px;
+            }
+        }
+
+        /* ==============Card Section Section =================== */
+
+        /* Scoped CSS for specific card section */
+        .custom-cards .card {
+            position: relative;
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+            .custom-cards .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .custom-cards .card img {
+                width: 100%;
+                height: auto;
+            }
+
+        .custom-cards .card-title {
+            margin-top: 10px;
+            font-family: "Georgia", serif;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .custom-cards .hover-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            z-index: 10;
+        }
+
+        .custom-cards .card:hover .hover-icon {
+            display: block;
+        }
+    </style>
+
+    <!-- @*================  Bootstrap Slider Start ==================== *@ -->
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="/gallery/ceremonyslider1.jpg" class="d-block w-100 img-fluid" alt="First slide">
+
+                <div class="carousel-caption d-none d-md-block">
+                <h5>"Celebrate with Haldi & Mehendi: A Colorful Tradition"</h5>
+                <p>"Experience the vibrant and joyous rituals of Haldi and Mehendi! These pre-wedding ceremonies bring friends and family together in a whirlwind of colors, laughter, and love. From the fragrant turmeric paste of Haldi to the intricate Mehendi designs, each moment is a celebration of beauty, culture, and new beginnings." </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/gallery/ceremonyslider2.jpg" class="d-block w-100 img-fluid" alt="First slide">
+
+                <div class="carousel-caption d-none d-md-block text-dark">
+                <h5>"Vibrance and Tradition: Haldi & Mehendi Celebrations"</h5>
+                <p> "Let the festivities begin! Haldi and Mehendi mark the start of wedding celebrations, filled with love, laughter, and unforgettable moments. The Haldi ceremony symbolizes blessings and purification, while Mehendi brings in elegance with its beautiful, intricate designs – both adding an extra layer of excitement to the big day!"</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/gallery/ceremonyslider3.jpg" class="d-block w-100 img-fluid" alt="First slide">
+
+                <div class="carousel-caption d-none d-md-block">
+                <h5>"Embrace the Colors of Haldi & Mehendi"</h5>
+                <p>"Get ready to shine bright with the cheerful and colorful rituals of Haldi and Mehendi! These heartwarming ceremonies celebrate the bride and groom with traditions that bring family together in laughter and joy. It’s the perfect blend of culture, beauty, and fun, creating unforgettable memories before the big day." </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container" id="contentHM">
+        <p>At Adarsh Studio, we capture the vibrant essence of Haldi and Mehndi ceremonies, preserving every joyful moment and heartfelt emotion. From the cheerful smearing of Haldi to the intricate art of Mehndi, we ensure these beautiful traditions are documented with creativity and finesse. Celebrate these precious moments with your loved ones as we transform them into timeless memories. Let Adarsh Studio bring your special ceremonies to life with stunning visuals and captivating storytelling.</p>
+    </div>
+    <!-- Content Section -->
+    <div class="container content-section mt-5">
+        <div class="row align-items-center">
+            <!-- Left Side Big Image -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <img src="~/gallery/haldi1.jpg" alt="Mehndi Ceremony" class="big-image">
+            </div>
+            <!-- Right Side Content and Small Images -->
+            <div class="col-md-6">
+                <div class="content">
+                    <h2>Celebrate the Vibrance of Haldi & Mehndi</h2>
+                    <p>
+                        Capture the beauty and joy of your Haldi and Mehndi ceremonies with Adarsh Studio.
+                        From candid moments to vibrant portraits, we ensure every memory is preserved beautifully.
+                    </p>
+                </div>
+                <div class="row small-images">
+                    <div class="col-6">
+                        <img src="~/gallery/haldi3.jpg" alt="Mehndi Design" class="img-fluid">
+                    </div>
+                    <div class="col-6">
+                        <img src="~/gallery/haldi4.jpg" alt="Haldi Celebration" class="img-fluid">
+                    </div>
+                    <div class="col-6">
+                        <!-- <img src="HaldiMehdiIMG/(02).jpg" alt="Joyful Moments"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- =================Video=============== -->
+
+    <div class="container mt-5">
+        <!-- Video Section -->
+        <div class="video-container">
+            <video autoplay muted loop>
+                <source src="~/wedVideo/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <!-- Paragraph Section -->
+        <div class="content">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et est nec nisl consequat eleifend.
+                Nullam convallis eros ut urna interdum, in facilisis felis tincidunt. Integer ut lacus vel mauris fermentum
+                tristique. Morbi at justo vitae eros vehicula dignissim. Sed vitae lectus nec tortor volutpat accumsan.
+            </p>
+            <hr />
+        </div>
+    </div>
+    <!-- =================MEHNDI CONTAINER IMAGE==================== -->
+    <div class="container">
+        <section class="mehndi-section">
+            <div class="mehndi-container">
+                <!-- Mehndi image -->
+                <img src="~/gallery/ceremonyabout.jpg" alt="Mehndi Ceremony">
+                <!-- Slider with content -->
+                <div class="hover-slider">
+                    <h4>Mehndi Ceremony</h4>
+                    <p>
+                        Celebrate the joy of Mehndi with vibrant colors, music, and traditions.
+                        Experience the charm of cultural rituals captured beautifully at Adarsh Studio.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- ======================================= -->
+        <section class="invitation-section d-flex align-items-center justify-content-center">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <h2 class="invitation-title">Invitation to Visit</h2>
+                        <div class="invitation-content">
+                            <p>
+                                Visit Adarsh Studio, where royal ambiance and bespoke celebrations await. Come visualize
+                                your fairytale wedding and experience the magic yourself. Book your personal tour today!
+                            </p>
+                           <a href="/Adarsh/Package"><button class="btn btn-outline-dark">VIEW PACKAGES</button></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="invitation-images">
+                            <div class="image-wrapper">
+                            <img src="~/gallery/ceremony1.jpg" alt="Groom Image" class="img-fluid">
+                                <div class="hover-overlay">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                            </div>
+                            <div class="image-wrapper" id="img2">
+                            <img src="~/gallery/ceremony3.jpg" alt="Bride and Groom Image" class="img-fluid">
+                                <div class="hover-overlay">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

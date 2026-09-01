@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewData["Title"] = "EditService";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+@using Adarsh_Studio.Models
+@model ServiceMaster
+
+<!-- Custom CSS for form styling (same as your Add Service form) -->
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+        }
+
+    .input-group .form-control {
+        border-radius: 5px;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    .mb-3 i {
+        margin-right: 10px;
+        color: #007bff;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="form-container">
+            <h2>Edit Service</h2>
+
+            @using (Html.BeginForm("EditService", "Admin", FormMethod.Post))
+            {
+                @Html.HiddenFor(model => model.ServiceId) <!-- Hidden field for ServiceId -->
+                <!-- Service Type input -->
+                <label for="serviceType" class="form-label">Service Type</label>
+
+                <br />
+                <div class="mb-3 input-group">
+                   
+                    <span class="input-group-text"><i class="fa-solid fa-cogs"></i></span>
+                    @Html.TextBoxFor(model => model.ServiceType, new { @class = "form-control", placeholder = "Enter Service Type", id = "ServiceType" })
+                </div>
+
+                <!-- Category input -->
+                <label for="serviceType" class="form-label">Category</label>
+
+                <br />
+                <div class="mb-3 input-group">
+                    
+                    <span class="input-group-text"><i class="fa-solid fa-th-list"></i></span>
+                    @Html.TextBoxFor(model => model.Category, new { @class = "form-control", placeholder = "Enter Category", id = "Category" })
+                </div>
+
+                <!-- Budget input -->
+                <label for="serviceType" class="form-label">Budget</label>
+
+                <br />
+                <div class="mb-3 input-group">
+                    
+                    <span class="input-group-text">
+                       
+                        <i class="fa-solid fa-dollar-sign"></i></span>
+                    @Html.TextBoxFor(model => model.Budget, new { @class = "form-control", placeholder = "Enter Budget", type = "number", id = "Budget" })
+                </div>
+
+                <!-- Discounted Rate input -->
+                <label for="serviceType" class="form-label">Discounted Rate</label>
+
+                <br />
+                <div class="mb-3 input-group">
+                    
+                    <span class="input-group-text"><i class="fa-solid fa-percent"></i></span>
+                    @Html.TextBoxFor(model => model.DiscountedRate, new { @class = "form-control", placeholder = "Enter Discounted Rate", type = "number", id = "DiscountedRate" })
+                </div>
+
+                <!-- Description textarea -->
+                <label for="Description" class="form-label">Description</label>
+                <div class="mb-3">
+                   
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description here...", rows = "4", id = "Description" })
+                </div>
+
+                <!-- Inclusions input -->
+                <label for="serviceType" class="form-label">Inclusions</label>
+                <div class="mb-3 input-group">
+                   
+                    <span class="input-group-text"><i class="fa-solid fa-check-circle"></i></span>
+                    @Html.TextBoxFor(model => model.Inclusions, new { @class = "form-control", placeholder = "Enter Inclusions", id = "Inclusions" })
+                </div>
+
+                <!-- Exclusions input -->
+                <label for="serviceType" class="form-label">Exclusions</label>
+
+                <br />
+                <div class="mb-3 input-group">
+                   
+                    <span class="input-group-text"><i class="fa-solid fa-times-circle"></i></span>
+                    @Html.TextBoxFor(model => model.Exclusions, new { @class = "form-control", placeholder = "Enter Exclusions", id = "Exclusions" })
+                </div>
+
+                <p>@ViewBag.Message</p>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            }
+        </div>
+    </div>
+</div>
+
+

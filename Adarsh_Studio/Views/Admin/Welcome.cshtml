@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewData["Title"] = "Welcome";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+
+<style>
+    /* Welcome Section Styling */
+    .welcome-section {
+        background: linear-gradient(135deg, #343a40, #495057);
+        color: #fff;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+        .welcome-section h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section .btn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            transition: background 0.3s;
+        }
+
+            .welcome-section .btn:hover {
+                background-color: #ff3e2f;
+            }
+
+            .p{
+                text-decoration:none;
+                color:black;
+            }
+</style>
+<!-- Welcome Section -->
+<section class="welcome-section">
+    <h1>Welcome Admin</h1>
+    <p>Dashboard - Adarsh Studio</p>
+</section>
+<div class="container-fluid px-4">
+    <div class="row g-3 my-2">
+        <div class="col-md-3">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <div>
+                    @Html.ActionLink("Add Notification", "ManageNotification", "Admin", null, new { @class = "fs-5 p" })
+                
+                </div>
+                <i class="fas fa-bell fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <div>
+                    @Html.ActionLink("Add Service", "AddService", "Admin", null, new { @class = "fs-5 p" })
+                  
+                </div>
+                <i class="fas fa-hand-holding-usd fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <div>
+                    @Html.ActionLink("Send Email", "SendEmail", "Admin", null, new { @class = "fs-5 p" })
+                   
+                </div>
+                <i class="fas fa-envelope fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded">
+                <div>
+                    @Html.ActionLink("Add City","AddCity","Admin",null,new{@class="fs-5 p"})
+                   
+                </div>
+                <i class="fas fa-city fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Main Content -->
+<main class="flex-grow-1 bg-light p-4">
+    <div class="row g-4">
+        <!-- Cards Section -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                        <i class="fas fa-list-check fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    <p>Manage all Clients.</p>
+                        @Html.ActionLink("Manage Bookings", "ShowBooking", "Admin", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                       <i class="fas fa-bell fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                        <p>Handle client enquiries..</p>
+                        @Html.ActionLink("Manage Enquiry", "ShowEnquiry", "Admin", null, new { @class = "btn btn-success" })
+              
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                        <i class="fas fa-comment-dots  fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    <p>Handle client Feedbacks.</p>
+                   @Html.ActionLink("Manage Feedbacks","ShowFeedback","Admin",null,new{@class="btn btn-success"})
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-3">
+        <!-- Additional Cards -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                        <i class="fas fa-comment-dots  fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    <p>Manage Services.</p>
+                        @Html.ActionLink("Manage Services", "ShowService", "Admin", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                        <i class="fas fa-person fs-1 primary-text border rounded-full secondary-bg p-3"></i><i class="fa-solid fa-person-military-to-person"></i>
+                    <p>View and update staff details.</p>
+                        @Html.ActionLink("Staff Management", "ShowStaff", "Admin", null, new { @class = "btn btn-success" })
+                
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                        <i class="fas fa-city fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    <p>Handle Shooting Locations </p>
+                        @Html.ActionLink("Manage Cities", "ShowCity", "Admin", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+  
+
+</div>

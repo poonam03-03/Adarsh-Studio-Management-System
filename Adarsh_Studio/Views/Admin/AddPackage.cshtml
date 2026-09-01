@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "AddPackage";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<style>
+    .form-control:focus {
+        border-color: #a33838; /* Blue border on focus */
+        box-shadow: 0 0 0 0.25rem rgba(38, 143, 255, 0.25); /* Light blue shadow */
+    }
+</style>
+
+
+
+
+<div class="row">
+    <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold">Add New Package</h2>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8 bg-light p-3 m-3" style="border:2px solid black;">
+        <p class="text-success">@ViewBag.pmsg</p>
+        <form action="AddPackage" method="post">
+            <div class="mb-3">
+                <label class="form-label">Package Title</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-box"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter package title" name="PackageTitle" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Package Price</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                    <input type="number" class="form-control" placeholder="Enter package price" name="Price" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Package Details 1</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter package details" name="Detail1">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Package Details 2</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter package details" name="Detail2">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Package Details 3</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter package details" name="Detail3">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Package Details 4</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                    <input type="text" class="form-control" placeholder="Enter package details" name="Detail4">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Add</button>
+            <button type="reset"  class="btn btn-secondary">clear all</button>
+        </form>
+
+    </div>
+    <div class="col-sm-2"></div>
+</div>

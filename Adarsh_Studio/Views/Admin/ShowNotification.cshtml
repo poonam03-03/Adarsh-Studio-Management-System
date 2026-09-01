@@ -1,0 +1,122 @@
+﻿
+
+@{
+    ViewData["Title"] = "ShowNotification";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+@using Adarsh_Studio.Models
+@model IEnumerable<UpdatesMaster>
+
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Manage Notification</h1>
+
+        <!-- Enquiry Section -->
+        <div class="enquiry-section">
+            <h4 class="mb-3">Update List</h4>
+           <p class="text-success">@TempData["ndelete"]</p>
+        <p class="text-success">@TempData["uedit"]</p>
+            <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="myTable">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Id</th>
+                            <th>Notification Message</th>                          
+                            <th colspan="2">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (UpdatesMaster em in Model)
+                            {
+                                <tr>
+
+                                    <td>@em.UpdateId</td>
+                                    <td>@em.UpdateMsg</td>
+                                   
+                                    <td>@Html.ActionLink("Edit", "EditNotification", new { id = em.UpdateId }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "DeleteNotification", new { id = em.UpdateId }, new { @class = "btn btn-danger", @onclick = "return confirmDelete(event, " + em.UpdateId + ");" })
+                                </td>
+                                <script>
+                                    function confirmDelete(event, id) {
+                                        // Prevent the link from being followed immediately
+                                        event.preventDefault();
+                                        var isConfirmed = confirm("Are you sure you want to delete this Notification?");
+                                        if (isConfirmed) {
+                                            // Redirect to the DeleteBooking action 
+                                            window.location.href = '@Url.Action("DeleteNotification", "Admin", new { id = "__id__" })'.replace('__id__', id);
+                                        }
+                                    }
+                                </script>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            <button class="btn btn-primary" id="next-button">next</button>
+            <button class="btn btn-primary" id="previous-button">Previous</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const rowsPerPage = 5;
+    let currentPage = 1;
+
+    function paginate() {
+      const startRow = (currentPage - 1) * rowsPerPage;
+      const endRow = startRow + rowsPerPage;
+
+      $('#myTable tr').hide().slice(startRow, endRow).show();
+    }
+
+    function nextPage() {
+      if (currentPage < Math.ceil($('#myTable tr').length / rowsPerPage)) {
+        currentPage++;
+        paginate();
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        paginate();
+      }
+    }
+
+    paginate();
+
+    $('#next-button').on('click', nextPage);
+    $('#previous-button').on('click', previousPage);
+</script>
+
+
+<style>
+
+    .enquiry-section {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .status-pending {
+        color: #ffc107;
+        font-weight: bold;
+    }
+
+    .status-resolved {
+        color: #28a745;
+        font-weight: bold;
+    }
+
+    .action-buttons button {
+        margin-right: 5px;
+    }
+</style>

@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewData["Title"] = "UploadServiceImage";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@model Adarsh_Studio.Models.ServiceMaster
+
+
+
+<h2>Upload Image for Service: @Model.ServiceType</h2>
+
+
+   
+
+
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 form">
+
+        <h2>File Upload Form</h2>
+        <form action="UploadServiceImage" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="serviceId" value="@Model.ServiceId" />
+            <div class="input-group">
+                <label for="file-upload"><i class="fas fa-upload"></i> Upload File</label>
+                <input type="file" id="file-upload" name="file" required>
+            </div>
+            <div class="input-group">
+                <label for="remark"><i class="fas fa-comment"></i> Remark</label>
+                <textarea id="remark" name="remark" placeholder="Enter any remark..." required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="col-sm-3"></div>
+</div>
+   
+       
+    
+
+    <style>
+
+    .form {
+       
+        padding: 30px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #file-upload{
+        cursor:pointer;
+    }
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+input[type="file"]:focus,
+textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #388e3c;
+}
+
+
+</style>
+
+
+
+
+
+

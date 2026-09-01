@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "ManageNotification";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+    <style>
+
+        .notification-section {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #80bdff;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+        .notification-title {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+    <div class="container mt-5">
+    <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold">Add Notification</h2>
+
+        <!-- Notification Form -->
+        <div class="notification-section mb-4">
+            <h4 class="mb-3">Add New Notification</h4>
+        <p class="text-success">@ViewBag.notify</p>
+            <form action="ManageNotification" method="post">
+               
+                <div class="mb-3">
+                    <label for="notificationMessage" class="form-label">Notification Message</label>
+                    <textarea class="form-control" id="notificationMessage" rows="3" placeholder="Enter message here" name="UpdateMsg" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Add Notification</button>
+            </form>
+        </div>
+        </div>

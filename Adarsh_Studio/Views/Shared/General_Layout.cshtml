@@ -1,0 +1,797 @@
+﻿@{
+    ViewBag.PageTitle = "Welcome to Adarsh Studio";
+   
+}
+
+@inject IConfiguration config
+@{
+    var MySiteKey = config.GetSection("Captcha").GetSection("SiteKey").Value;
+    // var MySiteKey = config["Captcha:SiteKey"];
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.PageTitle</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+    <style>
+       
+        .navbar {
+            position: sticky; /* Change to sticky for dynamic top positioning */
+            top: 0; /* Ensure it sticks to the top of the viewport */
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it's above other elements */
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), 0 -4px 10px rgba(0, 0, 0, 0.1), -4px 0 10px rgba(0, 0, 0, 0.1), 4px 0 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Montserrat', sans-serif;
+            border-radius: 5px;
+            transition: top 0.3s; /* Smooth transition when scrolling */
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-link {
+            position: relative;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000000;
+            transition: color 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: #a33838;
+            }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 50%;
+                transform: translateX(-50%) scaleX(0);
+                transform-origin: center;
+                width: 60%;
+                height: 2px;
+                background-color: #a33838;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-link:hover::after {
+                transform: translateX(-50%) scaleX(1);
+            }
+
+        /* Dropdown Hover Effect */
+        .nav-item.dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+
+        /* Dropdown Menu Styling */
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.3s ease-in-out; /* Smooth animation */
+        }
+
+        /* Fade-in Animation */
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            font-size: 14px;
+        }
+
+        .social-icons i {
+            font-size: 20px;
+            color: #555;
+            margin-left: 10px;
+        }
+
+            .social-icons i:hover {
+                color: #a33838;
+            }
+
+        .enquire-btn {
+            background-color: #a33838;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 2px;
+        }
+
+            .enquire-btn:hover {
+                background-color: black;
+                text-decoration: none;
+            }
+
+        .menu-container {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        #anchar {
+            text-decoration: none;
+            font-weight: 500;
+            color: #333;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+            #anchar:hover {
+                color: #a33838;
+                text-decoration: none;
+            }
+
+        footer {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+            footer a:hover {
+                text-decoration: underline;
+                color: #f8d210; /* Gold hover effect */
+            }
+
+        @@media (max-width: 768px) {
+            /* Remove the contact info and social icons */
+            header .contact-info, header .social-icons {
+                /* display: none; */
+                font-size: 8px;
+            }
+
+            .social-icons i {
+                font-size: 10px;
+                color: #555;
+                margin-right: 10px;
+            }
+
+            #anchar {
+                text-decoration: none;
+                font-size: 10px;
+                color: #333;
+                transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+
+            #follow i {
+                font-size: 10px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            #follow {
+                font-size: 10px;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            .social-icons a i {
+                font-size: 10px;
+                color: #555;
+                margin-right: 0px;
+            }
+        }
+
+        .book-btn {
+            background-color:black;
+            color: white;
+            border: none;
+            text-decoration:none;
+            padding: 8px 16px;
+        }
+
+            .book-btn:hover {
+                background-color: #a33838;
+            }
+
+        #enquirybtn {
+            position: fixed;
+            right: 0px;
+            top: 500px;
+            color: white;
+            transform: rotate(270deg);
+        }
+
+        #feedbackbtn {
+            position: fixed;
+            left: 0px;
+            top: 500px;
+            transform: rotate(270deg);
+            color: white;
+            cursor: pointer;
+        }
+
+        /* General form styling */
+        .modal-content {
+            border-radius: 8px;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-right: none;
+            padding: 8px 12px;
+            color: #a33838;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding-left: 35px; /* Space for icon */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Style for icons inside input fields */
+        .input-group-text i {
+            font-size: 16px;
+            color: #a33838;
+        }
+
+        /* Focus effect on input fields */
+        .form-control:focus {
+            border-color: #a33838;
+            box-shadow: 0 0 5px rgba(163, 56, 56, 0.5);
+        }
+
+        /* Styling for the modal header */
+        .modal-header {
+            background-color: #f2f2f2;
+            border-bottom: 2px solid #a33838;
+        }
+
+       
+
+
+      
+      
+
+        /* Modal Header */
+        .modal-header {
+            background: linear-gradient(to right, #a33838, beige); /* Gradient background */
+            color: white;
+            padding: 15px;
+            margin:5px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-align: center;
+        }
+
+            .modal-header h2 {
+                margin-bottom: 10px;
+            }
+
+        .form-control {
+            border-radius: 0;
+            border: 2px solid black;
+        }
+
+        .input-group-text {
+            background-color: #f8f9fa;
+            border: 2px solid black;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid" id="conbg">
+        <div class="container">
+            <header class="p-2">
+                <div class="container d-flex justify-content-between align-items-center p-0">
+                    <div class="contact-info">
+                        <a href="/Adarsh/Candid" id="anchar"> See our most recent blogs <i class="fa-solid fa-chevron-right"></i> </a>
+                    </div>
+                    <div>
+                        <a href="#" id="anchar"><i class="fas fa-phone"></i> +91 84235 69221 </a>
+                    </div>
+                </div>
+            </header>
+            <div class="container p-0">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <a class="navbar-brand" href="#">
+                            <img src="~/gallery/BLogo.png" alt="Adarsh Studios" id="logo">
+                            <span class="mx-4">|</span>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    @Html.ActionLink("About Us", "About", "Adarsh", null, new { @class = "nav-link" })
+                               
+                                </li>
+                                <li class="nav-item">
+                                    @Html.ActionLink("Services", "Service", "Adarsh", null, new { @class = "nav-link" })
+                                   
+                                </li>
+                                <li class="nav-item">
+                                    @Html.ActionLink("Packages", "Package", "Adarsh", null, new { @class = "nav-link" })
+                                 
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Wedding Services
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      
+                                        <li>  @Html.ActionLink("Wedding", "Wedding", "Adarsh", null, new { @class = "dropdown-item" })</li>
+                                        <li>   @Html.ActionLink("Pre-Wedding", "PreWedding", "Adarsh", null, new { @class = "dropdown-item" })</li>
+                                        <li>  @Html.ActionLink("Candid Photography", "Candid", "Adarsh", null, new { @class = "dropdown-item" })</li>
+                                        <li>  @Html.ActionLink("Ceremony", "Ceremony", "Adarsh", null, new { @class = "dropdown-item" })</li>
+                                  
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item">
+                                    @Html.ActionLink("Contact Us", "Contact", "Adarsh", null, new { @class = "nav-link" })
+                             
+                                </li>
+
+                                <li class="nav-item">
+                                    @Html.ActionLink("Gallery", "Gallery", "Adarsh", null, new { @class = "nav-link" })
+                                </li>
+                              
+                                @Html.ActionLink("Booking", "Booking", "Adarsh", null, new { @class = "book-btn " })
+                            </ul>
+                           
+                         
+                        </div>
+                    </div>
+                    <a href="/Adarsh/Feedback">
+                        <button type="button" id="feedbackbtn" class="enquire-btn">
+                            Feedback
+                        </button>
+                    </a>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" id="enquirybtn" class="enquire-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Enquiry
+                    </button>
+                    <!--enquiry button -->
+                  
+            </div>
+                </nav>
+           
+            </div>
+        </div>
+   
+        <header class="p-2">
+            <div class="container d-flex justify-content-between align-items-center p-0">
+                <div class="contact-info">
+                    <a href="#" id="anchar"><i class="fas fa-map-marker-alt"></i> Prayagraj Shankargarh</a>
+                    <span class="mx-2">|</span>
+                    <a href="adarshstudiosrj@gmail.com" id="anchar"> <i class="fas fa-envelope"></i> adarshstudiosrj@gmail.com</a>
+                </div>
+                <div>
+                    <div class="text-center">
+                        <div class="social-icons">
+                            <span><a id="follow">Follow us</a></span>
+                        <a href="https://www.facebook.com/share/18jg1EHYgQ/" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.youtube.com/channel/UCj_bYCRMZkwOYHwSXQn2vYA" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/_adarsh_studio?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!-- Modal HTML -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="border:2px solid #a33838;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Enquiry Form</h5>
+                   
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="enquiryForm">
+                        <!-- Name input -->
+                        <label for="name"><b>Name</b></label><br />
+                        <div class="mb-3 input-group">
+                          
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control" id="ename" placeholder="Enter your name" required>
+                        </div>
+
+                        <!-- Mobile No input -->
+                        <label for="name"><b>Mobile Number</b></label><br />
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            <input type="number" class="form-control" id="emob" placeholder="Enter your mobile number" required>
+                        </div>
+
+                        <!-- Email input -->
+                        <label for="name"><b>Email Id</b></label><br />
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" class="form-control" id="eemail" placeholder="Enter Your Email Id" required>
+                        </div>
+
+                        <!-- Enquiry message input -->
+                        <label for="name"><b>Enquiry Message</b></label><br />
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text"><i class="fas fa-comment-alt"></i></span>
+                            <input type="text" class="form-control" id="emsg" placeholder="Write your enquiry message" required>
+                        </div>
+
+                        <div class="g-recaptcha" style="width:fit-content; border-radius:20px;" data-sitekey="@MySiteKey"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    
+                    <button type="button" id="saveenquiry" class="btn btn-dark">Send Enquiry</button>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container-fluid">
+
+            @RenderBody()
+
+           
+        </div>
+    </main>
+    @*================== Footer Section================  *@
+
+    <style>
+
+        /* ========================Footer Start ==============*/
+
+
+        .footer {
+            background-color: white;
+        }
+
+            .footer .logo img {
+                max-width: 100%;
+                height: 80px;
+                margin: 0px;
+                padding: 0px;
+            }
+
+        .name {
+            width: 150px;
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #a33838;
+        }
+
+        .footer h5 {
+            color: white;
+            font-weight: bold;
+            margin-bottom: 20px;
+            /* text-align: center; */
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+            .footer a:hover {
+                color: #a33838;
+                text-decoration: underline;
+            }
+
+        .footer .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #a33838;
+            margin-bottom: 20px;
+        }
+
+        .footer i {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            margin-right: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .useful-links li::before,
+        .services-links li::before {
+            content: "→";
+            margin-right: 8px;
+            color: #f15025;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        .copy {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* Camera Icon in Footer Background */
+        .footer::before {
+        }
+
+        .footer .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Media Query for Mobile View */
+        @@media (max-width: 768px) {
+            .footer .row > div {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .social-icons a {
+                margin-right: 10px;
+            }
+        }
+
+        #Subscribe {
+            background-color: #a33838;
+            color: white;
+        }
+
+            #Subscribe:hover {
+                background-color:black;
+                color: white;
+            }
+
+
+        #scrollToTopBtn {
+            position: fixed;
+            right: 20px; /* Adjust as needed */
+            bottom: 20px; /* Adjust as needed */
+            z-index: 99; /* Ensure it's above other content */
+            padding: 20px;
+            background-color: maroon; /* Button background color */
+            color: white; /* Button text color */
+            border: none;
+            cursor: pointer;
+            border-radius: 1px;
+        }
+
+       
+    </style>
+
+
+    <!-- Footer -->
+    <footer class="footer mt-5 p-5 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <!-- Logo and Address -->
+                <div class="col-lg-3">
+                    <div class="logo">
+                        <img src="~/gallery/WLogo.png" alt="AS Logo">
+                    </div>
+                    <p class="name">Adarsh Studio</p>
+                    <p>
+                        <a href="https://www.google.com/maps/place/Shankargarh+Prayagraj" target="_blank">Shankargarh, Prayagraj, Uttar Pradesh, India</a>
+                    </p>
+                    <p><strong>Phone:</strong> <a href="tel:+918081143880">+91 8081143880</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:info@adarshstudio.com">info@adarshstudio.com</a></p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Useful Links -->
+                <div class="col-sm-3 mb-4 text-white">
+                    <h5>Useful Links</h5>
+                    <ul class="list-unstyled useful-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/Adarsh/About">About us</a></li>
+                        <li><a href="/Adarsh/Package">Packages</a></li>
+                        <li><a href="/Adarsh/Contact">Contact Us</a></li>
+                        <li><a href="/Adarsh/Gallery">Gallery</a></li>
+                        <li><a href="/Adarsh/Services">Services</a></li>
+                        <li><a href="/Adarsh/Booking">Book Now</a></li>
+                    </ul>
+                </div>
+
+                <!-- Our Services -->
+                <div class="col-sm-3 mb-4">
+                    <h5>Our Services</h5>
+                    <ul class="list-unstyled services-links">
+                       
+                        <li><a href="/Adarsh/Wedding">Wedding Services</a></li>
+                        <li><a href="/Adarsh/Candid">Candid Photography</a></li>
+                        <li><a href="/Adarsh/PreWedding">Pre-Wedding</a></li>
+                        <li><a href="/Adarsh/Booking">Booking</a></li>
+                        <li><a href="/Adarsh/Ceremony">Ceremony</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-3">
+                    <h5>Our Newsletter</h5>
+                    <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+                    <form id="subscribeform">
+                        <input type="email" class="form-control mb-2" placeholder="Your email" id="semail" required>
+                        <button type="submit" class="btn w-100" id="Subscribe">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p>© 2025-2030 Copyright to <span class="copy">Adarsh Studio Shankargarh</span>. All Rights Reserved.</p>
+                <p>
+                    Developed By:
+                    @Html.ActionLink("The Code Crafters","Developer","Adarsh",null,new{@class="text-light"})
+                   
+                </p>
+            </div>
+        </div>
+    </footer>
+    <button onclick="scrollToTop()" id="scrollToTopBtn"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <script>
+                // JavaScript code
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll animation
+            });
+        }
+
+    </script>
+
+   
+
+   
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#saveenquiry").click(function () {
+            var name, mob, email, message;
+            name = $("#ename").val().trim();
+            email = $("#eemail").val().trim();
+            mob = $("#emob").val().trim();
+            message = $("#emsg").val().trim();
+            // Validation
+           if (name === "" || email === "" || mob === "" || message === "") {
+            alert("All fields are required!");
+            return;
+           }
+           
+
+           // alert(name + mob + email + subject + message);
+           var obj={
+               Name: name,
+               EmailId: email,
+               MobNo: mob,
+               QueryMsg: message};
+       
+               // Disable the button to prevent multiple submissions
+               $("#saveenquiry").prop("disabled", true);
+
+           //Ajax Call
+            $.ajax({
+                type: "POST",
+                url: "/Adarsh/SaveEnquiryUsingAJAX",
+                data: JSON.stringify(obj),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    alert(result);
+
+                $("#ename").val('');
+                $("#eemail").val('');
+                $("#emob").val('');
+                $("#emsg").val('');
+
+                // Re-enable the button
+                $("#saveenquiry").prop("disabled", false);
+                },
+                error: function(result){
+                    alert(result);
+                    $("#saveenquiry").prop("disabled", false);  // Re-enable the button
+                }
+            });
+        });
+
+
+        //Subscription Form
+         $('#subscribeform').submit(function(e) {
+            e.preventDefault();
+
+            var emailId = $('#semail').val().trim();
+
+            if (emailId === "") {
+            alert("Please enter an email address.");
+            return;
+        }
+
+            $.ajax({
+                url: '/Adarsh/Subscribe', // The action method in your controller
+                type: 'POST',
+                data: { EmailId: emailId },
+                success: function(response) {
+                    // If email is successfully subscribed
+                    if (response.success) {
+                        alert('Subscription successful!');
+                    } else {
+                        // If email already exists
+                        alert('This email is already subscribed.');
+                    }
+                },
+                error: function() {
+                    alert('An error occurred, please try again later.');
+                }
+            });
+        });
+
+    });
+</script>
+
+
+
+
+
+
+
+         
+
+
+
+

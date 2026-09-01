@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewData["Title"] = "SendEmail";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<style>
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container for the whole page */
+.container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading Style */
+.page-header h1 {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Image Section */
+.image-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.email-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Form Styling */
+.email-form-section {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 1.1em;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+  height: 150px;
+}
+
+button.send-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button.send-button:hover {
+  background-color: #45a049;
+}
+
+</style>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-6">
+        <div class="container">
+            <!-- Page Heading -->
+            <header class="page-header">
+                <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold"></h2>
+            </header>
+            <p class="text-success">@ViewBag.EMessage</p>
+            <!-- Image Section -->
+            <section class="image-section">
+               
+            </section>
+
+            <!-- Email Form -->
+            <section class="email-form-section">
+                <form action="SendEmail" method="POST">
+                    <div class="form-group">
+                        <label for="recipient">To:</label>
+                        <input type="email" id="recipient" name="sendTo" required placeholder="Recipient's Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="Subject" required placeholder="Email Subject">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body">Message:</label>
+                        <textarea id="body" name="Sessage" required placeholder="Your message here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="send-button">Send Email</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+   

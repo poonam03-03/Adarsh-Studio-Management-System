@@ -1,0 +1,315 @@
+﻿
+@{
+    ViewData["Title"] = "Developer";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+<style>
+
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card img {
+      width: 100%;
+      height: 350px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .col-sm-5 {
+      animation: slideIn 2s ease-out;
+    }
+
+@@keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .card {
+      animation: slideIn 3s ease-out;
+    }
+
+    #c2{
+        margin-left: 100px;
+      }
+      #c1{
+        margin-right: 100px;
+      }
+
+
+@@keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .card .name {
+        text-align: center;
+        padding: 10px;
+        background-color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items:  center;
+    }
+
+    .social-icons {
+      position: absolute;
+      top: 50%;
+      left: -50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: left 0.5s ease;
+    }
+
+    .card:hover .social-icons {
+      left: 10px;
+    }
+
+    .card2:hover .social-icons {
+      right: 10px;
+    }
+
+    .social-icons a {
+      color: white;
+      background: #333;
+      padding: 10px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 16px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: maroon;
+    }
+
+    .col-sm-5 {
+      padding: 20px;
+    }
+
+    .col-sm-5 h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .col-sm-5 p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .info p {
+      margin: 0;
+    }
+
+@@media (max-width: 576px) {
+      .card {
+        margin: 0px;
+        padding: 0px;
+      }
+      .card img {
+        margin: 0px;
+        padding: 0px;
+      }
+      #c2{
+        margin: 0px;
+      }
+      #c1{
+        margin-right: 0px;
+      }
+      .info {
+        flex-direction: column;
+        /* align-items: center; */
+      }
+
+      .info p {
+        margin-bottom: 5px;
+      }
+    }
+@@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #c2 {
+    margin-bottom: 20px;
+  }
+
+  .col-sm-5, .col-sm-4 {
+    width: 100%;
+  }
+
+  .col-sm-5 {
+    order: 2; /* Details ko niche laane ke liye */
+  }
+
+  .col-sm-4 {
+    order: 1; /* Image ko upar le jaane ke liye */
+  }
+
+  .card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .info {
+    justify-content: center;
+  }
+}
+
+  </style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <div class="card" id="c1">
+                <img src="~/gallery/nikhil.jpg" alt="Nikhil Jaiswal">
+                <div class="name">Er. Nikhil Jaiswal</div>
+                <div class="social-icons">
+                    <a href="#" class="fab fa-instagram" title="Instagram"></a>
+                    <a href="#" class="fab fa-linkedin-in" title="LinkedIn"></a>
+                    <a href="#" class="fab fa-whatsapp" title="WhatsApp"></a>
+                    <a href="#" class="fab fa-facebook-f" title="Facebook"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <h2>Er. Nikhil Jaiswal</h2>
+            <strong>(Team Leader)</strong><br>
+            <p><strong>Kamadgiri Software Solution, Chitrakoot</strong></p>
+            <p>Full Stack Developer with expertise in JavaScript, React JS, .NET Core, and .NET MVC. Passionate about creating dynamic and responsive web applications. Always eager to learn new technologies and improve my skills.</p>
+            <div class="info">
+                <p><strong>Birthday:</strong> 21 Jan 2003</p>
+                <p><strong>Age:</strong> 22</p>
+            </div>
+            <div class="info">
+                <p><strong>Website:</strong> www.example.com</p>
+                <p><strong>Degree:</strong> Diploma</p>
+            </div>
+            <div class="info">
+                <p><strong>Phone:</strong> +808 114 3880</p>
+                <p><strong>Email:</strong> rnnikhiljaiswal2213@gmail.com</p>
+            </div>
+            <div class="info">
+                <p><strong>City:</strong> Shankargarh, Prayagraj, U.P.</p>
+                <p><strong>Freelance:</strong> Available</p>
+            </div>
+        </div>
+    </div>
+    <!-- Second Developer -->
+    <div class="row mt-5">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-5 mt-5">
+            <h2>Er. Poonam Pal Arvind</h2>
+            <p><strong>Kamadgiri Software Solution, Chitrakoot</strong></p>
+            <p>Full Stack Developer with expertise in JavaScript, React JS, .NET Core, and .NET MVC. Passionate about creating dynamic and responsive web applications. Always eager to learn new technologies and improve my skills.</p>
+            <div class="info">
+                <p><strong>Birthday:</strong> 03  May 2003</p>
+                <p><strong>Age: 21</strong> 22</p>
+            </div>
+            <div class="info">
+               
+                <p><strong>Degree:</strong> Diploma</p>
+            </div>
+            <div class="info">
+                <p><strong>Phone:</strong> +91- 9559499295</p>
+                <p><strong>Email:</strong> palpoonamarvind5612@gmail.com</p>
+            </div>
+            <div class="info">
+                <p><strong>City:</strong> Kerakat, Jaunpur, U.P.</p>
+                <p><strong>Freelance:</strong> Available</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card" id="c2">
+                <img src="~/gallery/poonam.jpg" alt="Er. Poonam Pal Arvind">
+                <div class="name">Er. Poonam Pal Arvind</div>
+                <div class="social-icons">
+                    <a href="#" class="fab fa-instagram" title="Instagram"></a>
+                    <a href="#" class="fab fa-linkedin-in" title="LinkedIn"></a>
+                    <a href="#" class="fab fa-whatsapp" title="WhatsApp"></a>
+                    <a href="#" class="fab fa-facebook-f" title="Facebook"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Third Developer  -->
+    <div class="row mt-5">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+            <div class="card" id="c1">
+                <img src="~/gallery/pradeep.jpg" alt="Er. Pradeep">
+                <div class="name">Er. Pradeep</div>
+                <div class="social-icons">
+                    <a href="#" class="fab fa-instagram" title="Instagram"></a>
+                    <a href="#" class="fab fa-linkedin-in" title="LinkedIn"></a>
+                    <a href="#" class="fab fa-whatsapp" title="WhatsApp"></a>
+                    <a href="#" class="fab fa-facebook-f" title="Facebook"></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <h2>Er. Pradeep</h2>
+            <p><strong>Kamadgiri Software Solution, Chitrakoot</strong></p>
+            <p>Full Stack Developer with expertise in JavaScript, React JS, .NET Core, and .NET MVC. Passionate about creating dynamic and responsive web applications. Always eager to learn new technologies and improve my skills.</p>
+            <div class="info">
+                <p><strong>Birthday:</strong> 21 Jan 2003</p>
+                <p><strong>Age:</strong> 22</p>
+            </div>
+            <div class="info">
+               
+                <p><strong>Degree:</strong> Diploma</p>
+            </div>
+            <div class="info">
+                <p><strong>Phone:</strong> +808 114 3880</p>
+                <p><strong>Email:</strong> rnnikhiljaiswal2213@gmail.com</p>
+            </div>
+            <div class="info">
+                <p><strong>City:</strong> Shankargarh, Prayagraj, U.P.</p>
+                <p><strong>Freelance:</strong> Available</p>
+            </div>
+        </div>
+    </div>
+</div>

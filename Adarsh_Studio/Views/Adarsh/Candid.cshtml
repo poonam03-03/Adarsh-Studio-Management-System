@@ -1,0 +1,417 @@
+﻿
+@{
+    ViewData["Title"] = "Candid";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+    <style>
+
+
+        /*===== Slider Start ==== */
+
+        /* Slider container */
+        .slider {
+            position: relative;
+            height: 800px; /* Fixed height for all images */
+            overflow: hidden;
+            border: 2px solid #ddd; /* Optional border */
+            margin: 0 auto; /* Center in column */
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the slider area */
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+            .slide.active {
+                opacity: 1;
+                position: relative;
+            }
+
+        /* Media Query for Mobile View */
+        @@media (max-width: 768px) {
+            .slider {
+                height: 500px; /* Reduced height for mobile view */
+                width: 100%; /* Full width for mobile screens */
+            }
+
+            .slide img {
+                object-fit: cover;
+            }
+        }
+
+        @@media (max-width: 768px) {
+            /* Slider container height for mobile */
+            .slider {
+                height: 400px;
+                width: 100%;
+            }
+            /* Slide images */
+            .slide img {
+                height: 100%;
+                object-fit: cover;
+            }
+            /* Optional: Add some padding around the slider */
+            .slider-container {
+                padding: 10px;
+            }
+        }
+
+        /*===== Slider End ==== */
+
+        /*------------- Second Section ------------ */
+        .main-section {
+            background-color: #fff5e9;
+            padding-bottom: 20px;
+        }
+
+        .left-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .left-image img {
+                animation: slideInLeft 1.5s ease-in-out;
+            }
+
+        .rounded-arch {
+            border: 5px solid #f3e0d2;
+        }
+
+        .text-section h4 {
+            font-size: 20px;
+            color: #7a5e54;
+        }
+
+        .highlight {
+            font-size: 48px;
+            color: #e77b56;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            margin-top: 10px;
+            color: #5e4a47;
+        }
+
+        .animate-image {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @@keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+            ul li {
+                font-size: 18px;
+                margin-bottom: 10px;
+                animation: fadeIn 2s ease-in-out;
+            }
+
+        .enquiry-btn {
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 30px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #800000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .BookNow-btn {
+            display: inline-block;
+            margin-top: 50px;
+            margin-left: 30px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #800000;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .enquiry-btn:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+        .BookNow-btn:hover {
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+        #im2 {
+            margin-top: 200px;
+        }
+
+        @@media (max-width: 700px) {
+            #im2 {
+                margin-top: 15px;
+            }
+        }
+
+        /* Keyframes for text animation */
+        @@keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Third Section Candid Info Style Start  */
+        .candid-section {
+            background-color: #f9f9f9;
+            padding: 50px 20px;
+            border-radius: 8px;
+        }
+
+        .candid-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .candid-header h1 {
+                font-size: 36px;
+                color: #e77b56;
+                font-weight: bold;
+            }
+
+        .candid-description {
+            font-size: 18px;
+            color: #5e4a47;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+            ul li {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+        .lens-section h4 {
+            font-size: 22px;
+            color: #7a5e54;
+            margin-bottom: 10px;
+        }
+
+        .images-container img {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Media Query for Mobile */
+        @@media (max-width: 768px) {
+            .images-container img {
+                height: auto;
+                object-fit: cover;
+            }
+        }
+        /* Third Section Candid Info Style End  */
+
+        /* Fourth Section Card Style Start  */
+
+        .event-card {
+            position: relative;
+            overflow: hidden;
+            border: none;
+            height: 350px; /* Fixed card height */
+            transition: transform 0.3s;
+        }
+
+            .event-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .event-card:hover img {
+                transform: scale(1.1);
+                opacity: 0.8; /* Black overlay effect */
+            }
+
+            .event-card .icon-overlay {
+                display: none; /* Icon removed as per instructions */
+            }
+
+        .event-name {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+
+    <!-- Slider -->
+    <!-- Second Section -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="~/gallery/candidslider1.jpg" alt="Image 1" class="slide">
+            <img src="~/gallery/candidslider2.jpg" alt="Image 2" class="slide">
+            <img src="~/gallery/candidslider3.jpg" alt="Image 3" class="slide">
+            <img src="~/gallery/candidslider4.jpg" alt="Image 3" class="slide">
+            <img src="~/gallery/candidslider5.jpg" alt="Image 3" class="slide">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          let currentSlide = 0;
+          const slides = $('.slide');
+          const totalSlides = slides.length;
+          function showNextSlide() {
+            slides.eq(currentSlide).removeClass('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides.eq(currentSlide).addClass('active');
+          }
+
+          setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+        });
+
+    </script>
+
+    <!-- Second Section -->
+    <div class="container main-section mt-4">
+        <div class="row align-items-center">
+            <!-- Left Image -->
+            <div class="col-lg-3 col-md-12 position-relative left-image">
+                <img src="~/gallery/CP4.jpg" alt="Candid Photography" class="img-fluid rounded-arch">
+            </div>
+            <div class="col-lg-3 col-md-12 position-relative left-image">
+                <img src="~/gallery/CP5.jpg" alt="Candid Photography" class="img-fluid rounded-arch" id="im2">
+            </div>
+            <!-- Right Content -->
+            <div class="col-lg-6 col-md-12 text-section">
+                <h4>Welcome to</h4>
+                <h1 class="highlight">Adarsh Studio Shankargarh</h1>
+                <p class="subtitle">We specialize in candid photography to make your moments unforgettable. Explore our services:</p>
+                <ul>
+                    <li>Professional Candid Photography for weddings and events.</li>
+                    <li>High-quality editing to preserve your precious memories.</li>
+                    <li>Specialized in pre-wedding and post-wedding shoots.</li>
+                    <li>Creative portraits and family photography.</li>
+                    <li>On-demand customized photography solutions.</li>
+                </ul>
+               
+                <a href="/Adarsh/Booking" class="BookNow-btn">Book Now</a>
+            </div>
+        </div>
+    </div>
+    <!-- Third Section Cndid Info -->
+    <div class="container candid-section">
+        <div class="candid-header">
+            <h1>Candid Photography</h1>
+            <p class="candid-description">Capturing the most natural and beautiful moments requires skill, patience, and the right equipment. Here's how candid photography is done:</p>
+        </div>
+
+        <div class="row">
+            <!-- Left Side Content -->
+            <div class="col-md-6">
+                <ul>
+                    <li>Use natural light for more authentic photos.</li>
+                    <li>Always stay ready with your camera to capture unexpected moments.</li>
+                    <li>Keep your distance to avoid interrupting the natural flow.</li>
+                    <li>Use a fast shutter speed to freeze moments.</li>
+                    <li>Practice with different angles and perspectives.</li>
+                </ul>
+
+                <div class="lens-section">
+                    <h4>Recommended Lenses:</h4>
+                    <ul>
+                        <li><b>50mm f/1.8:</b> Perfect for portraits and low light.</li>
+                        <li><b>85mm f/1.4:</b> Ideal for close-up candid shots with great bokeh.</li>
+                        <li><b>24-70mm f/2.8:</b> A versatile lens for wider shots and portraits.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Side Images -->
+            <div class="col-md-6 images-container">
+                <img src="~/gallery/candidimg.png" alt="Candid Photography Image 1">
+            </div>
+        </div>
+    </div>
+
+
+<section class="container my-5">
+    <h2 class="text-center mb-3" style="color:#a44838">Our Blogs</h2>
+    <p class="text-center text-muted">
+        At Adarsh Studio, we capture every moment beautifully. From traditional shoots to cinematic pre-wedding videos,
+        our work reflects passion and perfection. Explore some of our featured blogs and video highlights below.
+    </p>
+
+    <div class="row mt-4">
+        <!-- First Row: General Videos -->
+        <div class="col-sm-6 mb-4">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/z_zqHyZQ1gw" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-sm-6 mb-4">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/F9_7cXoQtbc" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <!-- Second Row: Pre-Wedding Videos -->
+        <div class="col-sm-6 mb-4">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/9d03gmuqr7Y?si=1xsi-OGMDqS4RiIA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        
+            </div>
+        </div>
+        <div class="col-sm-6 mb-4">
+            <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/F9_7cXoQtbc" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>

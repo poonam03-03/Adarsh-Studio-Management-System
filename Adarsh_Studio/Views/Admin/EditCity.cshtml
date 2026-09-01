@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "EditCity";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+
+<style>
+
+    .notification-section {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        border-color: #80bdff;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+    }
+
+    .notification-title {
+        font-weight: bold;
+        color: #007bff;
+    }
+</style>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">📢 Update City</h1>
+   
+   
+
+    <!-- Notification Form -->
+    <div class="notification-section mb-4">
+        <h4 class="mb-3">Update City Name</h4>
+        <form action="EditCity" method="post">
+            <input type="number" name="CityId" value="@Model.CityId" hidden />
+            
+            <div class="mb-3">
+                <label for="CityName" class="form-label">City Name</label>
+                <textarea class="form-control" id="notificationMessage" rows="3" placeholder="Enter City Name" name="CityName" required>@Model.CityName</textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    </div>
+</div>
+

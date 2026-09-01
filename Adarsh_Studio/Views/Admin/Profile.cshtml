@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+    <style>
+        .input-group-text {
+            background-color: #f0f0f0;
+        }
+
+        .form-control:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 0.25rem rgba(76, 175, 80, 0.25);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .profile-header .profile-info {
+                margin-left: 20px;
+            }
+
+                .profile-header .profile-info h2 {
+                    margin: 0;
+                    font-size: 24px;
+                }
+
+                .profile-header .profile-info p {
+                    color: #888;
+                }
+    </style>
+
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div>
+                    <img src="https://via.placeholder.com/150" alt="Admin Profile Image" class="profile-image">
+                </div>
+                <div class="profile-info">
+                    <h2>Admin Name</h2>
+                    <p>Role: Super Admin</p>
+                </div>
+            </div>
+
+            <!-- Profile Form -->
+            <div class="card p-4">
+                <form>
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            <input type="text" class="form-control" id="phone" placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" class="form-control" id="password" placeholder="Enter password">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-success w-100">Update Profile</button>
+                </form>
+            </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>

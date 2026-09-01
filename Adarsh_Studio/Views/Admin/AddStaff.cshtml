@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewData["Title"] = "AddStaff";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<style>
+   
+
+    .form-control {
+        border-radius: 0;
+        border: 2px solid black;
+    }
+
+    .input-group-text {
+        background-color: #f8f9fa;
+        border: 2px solid black;
+    }
+
+    .input-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        border-radius: 0;
+        border: 2px solid black;
+    }
+
+
+    .err {
+        color: red;
+        font-size: 0.875rem; /* Smaller text size */
+        margin-top: 5px; /* Space between the input field and the error message */
+        display: block; /* Make it a block element to appear below the input */
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    span {
+        color: red;
+    }
+
+    .book-btn {
+        background-color: green;
+        color: white;
+        border: none;
+        text-decoration: none;
+        padding: 8px 16px;
+    }
+
+        .book-btn:hover {
+            background-color: #a33838;
+        }
+</style>
+
+
+
+
+<div class="container my-5">
+    <div class="row">
+        <h2 class="text-center mb-3" style="color:#a33838;font-weight:bold">Add Staff Member</h2>
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-8 bg-light p-3" style="border:2px solid black;">
+
+            <p class="text-success">@ViewBag.addstaff</p>
+
+
+            <!--first row-->
+            @using (Html.BeginForm("AddStaff", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+           
+            {
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="Name" class="form-label">Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            @Html.TextBox("Name", null, new { @class = "form-control", placeholder = "Enter  Name", Type = "text", id = "bname" })
+
+
+                        </div>
+                        <span id="bmname"></span>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="Contact" class="form-label">Role</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+
+                            @Html.TextBox("Role", null, new { @class = "form-control", placeholder = "Enter Member Role",  id = "role" })
+
+                        </div>
+                        <span id="bmmobno"></span>
+                    </div>
+                </div>
+
+                <!--second row-->
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Specialization</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-camera-retro"></i></span>
+                            @Html.TextBox("Specialization", null, new { @class = "form-control", placeholder = "Enter Specialization", Type = "text", id = "bemail" })
+
+                        </div>
+                        <span id="bmemail"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="exclusions" class="form-label">Contact</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                            @Html.TextBox("Contact", null, new { @class = "form-control", placeholder = "Enter Contact", Type = "number", id = "bservice" })
+
+                        </div>
+                        <span id="bmservice"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <i class="fas fa-upload"></i>
+                <label for="file">Upload Image/Document</label>
+                <input type="file" id="file" name="file" class="form-control" accept="image/*,.pdf,.doc,.docx,.txt">
+                </div>
+
+                <div class="mb-3">
+                    <i class="fas fa-location-dot"></i>
+                    <label for="Address" class="form-label">Address</label>
+                    @Html.TextArea("Address", null, new { @class = "form-control", placeholder = "Enter  Address", rows = "4", id = "baddress" })
+                </div>
+
+
+                <div class="text-center">
+                    <button type="submit" id="bookbtn" class="btn book-btn">Add Staff</button>
+                    <input type="reset" class="btn btn-secondary" value="reset">
+                </div>
+
+            }
+
+        </div>
+
+
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

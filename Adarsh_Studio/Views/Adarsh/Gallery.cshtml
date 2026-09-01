@@ -1,0 +1,285 @@
+﻿@{
+    ViewData["Title"] = "Gallery";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+
+
+    <style>
+        /* Custom styles for gallery */
+        .gallery-item {
+            margin-bottom: 15px;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .category-btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .active-category {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+
+        .btn-group button {
+            background-color: white; /* Green background */
+            border: 2px solid black; /* Green border */
+            color: #a33838; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
+        }
+
+            .btn-group button:not(:last-child) {
+                border-right: none; /* Prevent double borders */
+            }
+
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Add a background color on hover */
+        .btn-group button:hover {
+            background-color: gray;
+        }
+
+
+    
+   
+
+        .gallery {
+            padding: 50px 0;
+        }
+
+            .gallery img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+                .gallery img:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                }
+
+        .lb-overlay {
+            overflow: hidden !important;
+        }
+
+        .section-title {
+            margin-top: 40px;
+            font-weight: bold;
+            color: #000000;
+        }
+        @@media (max-width: 768px) {
+            .gallery
+
+        {
+            padding: 20px 10px;
+        }
+
+        }
+    </style>
+
+<h1 class="my-4 text-center" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;color:#a33838">Our Image Gallery</h1>
+    <div class="container">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-sm-3 mb-3">
+                <div class="card gallery-card">
+                    <img src="~/gallery/couple.jpg" alt="Gallery Image" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Pre-Wedding Shoot</h5>
+                        <p class="card-text">Memorable pre-wedding moments captured beautifully.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-3">
+                <div class="card gallery-card">
+                    <img src="~/gallery/nightcouple.jpg" alt="Gallery Image" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Candid Photography</h5>
+                        <p class="card-text">Natural and unposed shots that tell your story.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-3">
+                <div class="card gallery-card">
+                    <img src="~/gallery/mehendi1.jpg" alt="Gallery Image" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Mehendi Ceremony</h5>
+                        <p class="card-text">Memorable ceremony moments captured beautifully.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-3">
+                <div class="card gallery-card">
+                    <img src="~/gallery/collage.png" alt="Gallery Image" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Wedding Shoot</h5>
+                        <p class="card-text">Capturing the most beautiful moments of your wedding.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* ================= *@
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-sm-3 mb-4">
+                <div class="card gallery-card">
+                    <img src="~/gallery/preweddingcouple.jpg" alt="Couple Close-up" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Romantic Couple</h5>
+                        <p class="card-text">A beautiful close-up moment of the couple.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-4">
+                <div class="card gallery-card">
+                    <img src="~/gallery/bride5.jpg" alt="Couple Close-up" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Bridal Shoot</h5>
+                        <p class="card-text">A natural expression of love and joy for Wedding Season</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-4">
+                <div class="card gallery-card">
+                    <img src="~/gallery/haldi3.JPG" alt="Wedding Close-up" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Wedding Ritual</h5>
+                        <p class="card-text">A close-up shot of an important wedding ritual.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 mb-4">
+                <div class="card gallery-card">
+                    <img src="~/gallery/wed5.jpg" alt="Wedding Close-up" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Wedding Shoots</h5>
+                        <p class="card-text">A stunning close-up of the bride and groom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       
+
+
+
+
+
+
+
+
+<div class="container-fluid">   
+    <div class="row">       
+        <div class="col text-center mb-3">  
+        <h1 class="my-4" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"></h1>    
+        <div class="btn-group" role="group" aria-label="Category buttons">               
+            <button type="button" class="btn btn-primary" onclick="filterCategory('Events')" aria-label="Pre-wedding">All Events</button>       
+            <button type="button" class="btn btn-primary" onclick="filterCategory('Prewedding')" aria-label="Birthday Party">Pre Wedding</button>            
+            <button type="button" class="btn btn-primary" onclick="filterCategory('Wedding')" aria-label="Candid Photography">Weddings</button>            
+            <button type="button" class="btn btn-primary" onclick="filterCategory('Candid')" aria-label="Ceremony">Candid Shoots</button>         
+            <button type="button" class="btn btn-primary" onclick="filterCategory('Ceremony')" aria-label="Events">Ceremony</button>      
+        </div>      
+        </div> 
+        </div>      
+              <!-- Gallery Section -->    
+
+              <div id="gallery" class="row gallery-container" style="display: none;"> 
+                  <!-- Gallery images will be displayed here -->  
+                  </div> 
+                  </div>
+
+
+
+<script>
+    const images = {
+        Events: [
+            '/gallery/bride2.jpg',
+            '/gallery/wed5.jpg',
+            '/gallery/nightcouple.jpg',
+            '/gallery/bride3.jpg',
+            '/gallery/bride4.jpg',
+            '/gallery/wed3.jpg'
+        ],
+        Prewedding: [
+            '/gallery/prewed.png',
+            '/gallery/couple3.jpg',
+            '/gallery/prewed1.png',
+            '/gallery/couple.jpg',
+            '/gallery/couple2.jpg'
+        ],
+        Wedding: [
+            '/gallery/wed1.jpg',
+            '/gallery/broomwed.png',
+            '/gallery/wedcouple.jpeg',
+            '/gallery/bride6.jpg',
+            '/gallery/wed4.jpg',
+            '/gallery/bride5.jpg'
+        ],
+        Candid: [
+            '/gallery/girlshd.jpg',
+            '/gallery/prewed2.jpg',
+            '/gallery/bride4.jpg',
+            '/gallery/services2.jpeg'
+        ],
+        Ceremony: [
+            '/gallery/ceremony3.jpg',
+            '/gallery/haldicollage.jpg',
+            '/gallery/mehendipose.jpg',
+            '/gallery/Haldi4.jpg',
+            '/gallery/mehendi1.jpg'
+        ]
+    };
+
+    function filterCategory(category) {
+        const galleryContainer = document.getElementById('gallery');
+
+        // Fade out the current gallery
+        $(galleryContainer).fadeOut(300, function() {
+            galleryContainer.innerHTML = ''; // Clear the current images
+
+            // Add new images for the selected category
+            images[category].forEach(image => {
+                const div = document.createElement('div');
+                div.classList.add('col-md-4', 'gallery-item', 'mb-3');
+                div.innerHTML = `<img src="${image}" alt="${category}" class="img-fluid rounded">`;
+                galleryContainer.appendChild(div);
+            });
+
+            // Fade in the updated gallery
+            $(galleryContainer).fadeIn(300);
+        });
+    }
+
+    // Default to show nature images
+    window.onload = function() {
+        filterCategory('Events');
+    };
+</script>
+
+       
+
+   

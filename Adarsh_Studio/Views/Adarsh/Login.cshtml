@@ -1,0 +1,361 @@
+﻿@{
+    ViewBag.PageTitle = "Login";
+    Layout = "~/Views/Shared/General_Layout.cshtml";
+}
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- Popper.js (required for Bootstrap tooltips and popovers) -->
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@inject IConfiguration config
+@{
+    var MySiteKey = config.GetSection("Captcha").GetSection("SiteKey").Value;
+    // var MySiteKey = config["Captcha:SiteKey"];
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<style>
+
+    /* Image Column */
+    .image-column {
+        flex: 1;
+        background-color: beige;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Form Column */
+    .form-column {
+        flex: 1;
+        background-color: white;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 30px;
+        color: #333;
+    }
+
+    /* Input Container */
+    .input-container {
+        margin-bottom: 15px;
+    }
+
+        .input-container label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: black;
+        }
+
+    .square-input {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        margin-bottom:2%;
+        border: 2px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+        .square-input:focus {
+            border-color: #a33838;
+            outline: none;
+        }
+
+    .submit-btn {
+        padding: 12px;
+        background-color:black;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+        .submit-btn:hover {
+            background-color: #a33838;
+        }
+
+    .book-btn {
+        background-color: black;
+        color: white;
+        border: none;
+        text-decoration: none;
+        padding: 8px 16px;
+    }
+
+        .book-btn:hover {
+            background-color: #a33838;
+        }
+
+</style>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="row">
+        <!-- First Column: Image -->
+        <div class="image-column">
+            <img src="/gallery/loginimg.png" alt="Image" class="login-image img-fluid">
+        </div>
+
+        <!--Form-->
+        <div class="form-column">
+            <h2 style="color:#a33838;font-weight:bold;"> Admin Login</h2>
+                <form id="adminLoginForm">
+                <div class="input-container">
+                    <label for="username">
+                            <h5> <i class="fas fa-user"></i> Username</h5>
+                    </label>
+                        <input type="text" id="adminId" name="adminId" class="square-input"/>
+                   
+                </div>
+                <div class="input-container">
+                    <label for="password">
+                            <h5>  <i class="fas fa-lock"></i> Password</h5>
+                    </label>
+                        <input type="password" id="adminPass" name="adminPass" class="square-input"/>
+                </div>
+
+                 
+                    <div class="g-recaptcha" style="width:fit-content; border-radius:20px;" data-sitekey="@MySiteKey"></div>
+                
+             <button type="submit" class=" mt-2 submit-btn">Login</button>
+                    
+            </form>
+                <div id="loginMessage"></div>
+          
+                <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" style="float:left">Forgot Password?</button>
+        </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="forgotAdminId" class="form-label">Enter Admin ID</label>
+                    <input type="text" class="form-control" id="forgotAdminId" name="forgotAdminId">
+                </div>
+                <button type="button" id="sendOtpBtn" class="btn book-btn">Send OTP</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- OTP Verification Modal -->
+<div class="modal fade" id="otpVerificationModal" tabindex="-1" aria-labelledby="otpVerificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="otpVerificationModalLabel">OTP Verification</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="otpCode" class="form-label">Enter OTP</label>
+                    <input type="text" class="form-control" id="otpCode" name="otpCode">
+                </div>
+                <button type="button" id="verifyOtpBtn" class="btn book-btn">Verify OTP</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Password Modal -->
+<div class="modal fade" id="newPasswordModal" tabindex="-1" aria-labelledby="newPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newPasswordModalLabel">Reset Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="forgotAdminId" class="form-label">Enter Admin ID</label>
+                    <input type="text" class="form-control" id="forgotAdminId" name="forgotAdminId">
+                    <label for="otpCode" class="form-label">Enter OTP</label>
+                    <input type="text" class="form-control" id="otpCode" name="otpCode">
+                    <label for="newPassword" class="form-label">Enter New Password</label>
+                    <input type="password" class="form-control" id="newPassword" name="newPassword">
+                    <span id="pmsg" style="color:green;font-weight:bold"></span>
+                </div>
+                <button type="button" id="resetPasswordBtn" class="btn book-btn">Reset Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+      // Forgot Password - Send OTP
+        $("#sendOtpBtn").click(function () {
+            var adminId = $("#forgotAdminId").val();
+            $.ajax({
+                url: '/Adarsh/ForgotPassword',  // Update with actual controller URL
+                type: 'POST',
+                data: { adminId: adminId },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#forgotPasswordModal').modal('hide');
+                        $('#otpVerificationModal').modal('show');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    alert('Error: ' + error.responseText);
+                }
+            });
+        });
+
+        // OTP Verification
+        $("#verifyOtpBtn").click(function () {
+            var adminId = $("#forgotAdminId").val();
+            var otpCode = $("#otpCode").val();
+            $.ajax({
+                url: '/Adarsh/VerifyPassword',  // Update with actual controller URL
+                type: 'POST',
+                data: { adminId: adminId, verificationCode: otpCode },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        $('#otpVerificationModal').modal('hide');
+                        $('#newPasswordModal').modal('show');
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    alert('Error: ' + error.responseText);
+                }
+            });
+        });
+
+        // Reset Password
+        $("#resetPasswordBtn").click(function () {
+            var adminId = $("#forgotAdminId").val();
+            var newPassword = $("#newPassword").val();
+            var otpCode = $("#otpCode").val();  // Use the OTP code entered earlier
+            $.ajax({
+                url: '/Adarsh/ResetPassword',  // Update with actual controller URL
+                type: 'POST',
+                data: { AdminId: adminId, AdminPass: newPassword, VerificationCode: otpCode },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        // Optionally, redirect to login page or another page
+                        window.location.href = "/Admin/Welcome";
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function (error) {
+                    alert('Error: ' + error.responseText);
+                }
+            });
+        });
+
+         //Check password strength
+            $("#newPassword").keyup(function(){
+                var pass=$(this).val();
+                var len,ucount=0,lcount=0,dcount=0,scount=0;
+                len=pass.length;
+                for(x=0;x<len;x++)
+                {
+                  var ascii=pass.charCodeAt(x);
+                  if(ascii>=65 && ascii<=90)
+                     ucount++;
+                  else if(ascii>=97 && ascii<=122)
+                     lcount++;
+                  else if(ascii>=48 && ascii<=57)
+                     dcount++;
+                  else
+                     scount++;
+                }
+            var arr=["Very Poor","Poor","Average","Strong",
+            "Unbreakable"];
+            var points=-1;
+            if(len>=6)
+               points++;
+            if(lcount>0)
+               points++;
+            if(ucount>0)
+              points++;
+            if(dcount>0)
+              points++;
+            if(scount>0)
+              points++;
+            if(len>0)
+               $("#pmsg").text("Strength: "+arr[points]);
+            });
+      
+
+
+
+
+       
+     $(document).ready(function() {
+        $('#adminLoginForm').on('submit', function(event) {
+            event.preventDefault();
+
+            var adminId = $('#adminId').val();
+            var adminPass = $('#adminPass').val();
+
+             // Validation
+           if (adminId === "" || adminPass ==="") {
+            alert("All fields are required!");
+            return;
+           }
+
+            $.ajax({
+                url: '@Url.Action("Login", "Adarsh")',  // This URL will call the AdminLogin action in the Admin controller
+                type: 'POST',
+                data: {
+                    AdminId: adminId,
+                    AdminPass: adminPass
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert(response.message);  // Show success message
+                        window.location.href = response.redirectUrl;  // Redirect to another page after successful login
+                    } else {
+                        alert(response.message);  // Show error message
+                    }
+                },
+                error: function() {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        });
+    });
+  
+    </script>
